@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>일일 박스오피스 {{date}} 기준 </h1>
+    <ul>
+    {% for list in daily_lists %}
+        <li>{{ list.movieNm }}</li>
+            <ul>
+                <li>KOFIC_ID: {{ list.movieCd }}</li>
+                <li>관객수: {{ list.audiAcc }}</li>
+                <li>줄거리: {{ list.description }}</li>
+                <li>평균평점: {{ list.score }}</li>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ list.trailer }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <li><img src="{{ list.poster_url }}" alt=""></li>
+                <li><img src="{{ list.subPhoto1 }}" alt=""></li>
+                <li><img src="{{ list.subPhoto2 }}" alt=""></li>
+                <li><img src="{{ list.subPhoto3 }}" alt=""></li>
+            </ul>
+    {% endfor %}
+    </ul>
+{% endblock%}
