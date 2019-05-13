@@ -23,6 +23,11 @@ def beautify(url, selector):
     bs_response = bs(response, 'html.parser')
     result = bs_response.select_one(selector)
     return result
+    
+    
+def trimming(string):
+    string = string.replace(u'\xa0', u' ')
+    return string
 
 
 def get_score_or_0(score):
@@ -100,7 +105,7 @@ for daily in daily_lists:
     SEARCH_BASIC_selector_score = '#actualPointPersentBasic > div > span > span'
 
     posterUrl = beautify(SEARCH_BASIC_url, SEARCH_BASIC_selector_posterUrl).get('src')
-    description = beautify(SEARCH_BASIC_url, SEARCH_BASIC_selector_description).text
+    description = trimming(beautify(SEARCH_BASIC_url, SEARCH_BASIC_selector_description).text)
     score = get_score_or_0(beautify(SEARCH_BASIC_url, SEARCH_BASIC_selector_score))
 
     save_data("posterUrl", posterUrl)
@@ -135,8 +140,7 @@ for daily in daily_lists:
         'audiChange': '-17.9',
         'audiCnt': '290781',
         'audiInten': '-63447',
-        'description': '인피니티 워 이후 절반만 살아남은 지구\xa0마지막 희망이 된 어벤져스\xa0먼저 떠난 그들을 위해 모든 것을 '
-                        '걸었다!\xa0\xa0위대한 어벤져스\xa0운명을 바꿀 최후의 전쟁이 펼쳐진다!',
+        'description': '인피니티 워 이후 절반만 살아남은 지구\xa0마지막 희망이 된 어벤져스\xa0먼저 떠난 그들을 위해 모든 것을 걸었다!\xa0\xa0위대한 어벤져스\xa0운명을 바꿀 최후의 전쟁이 펼쳐진다!',
         'movieCd': '20184889',
         'movieNm': '어벤져스: 엔드게임',
         'movieNmEn': 'Avengers: Endgame',
