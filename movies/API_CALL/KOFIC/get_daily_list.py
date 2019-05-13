@@ -140,7 +140,7 @@ for daily in daily_lists:
         'audiChange': '-17.9',
         'audiCnt': '290781',
         'audiInten': '-63447',
-        'description': '인피니티 워 이후 절반만 살아남은 지구\xa0마지막 희망이 된 어벤져스\xa0먼저 떠난 그들을 위해 모든 것을 걸었다!\xa0\xa0위대한 어벤져스\xa0운명을 바꿀 최후의 전쟁이 펼쳐진다!',
+        'description': '인피니티 워 이후 절반만 살아남은 지구 마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다!  위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!',
         'movieCd': '20184889',
         'movieNm': '어벤져스: 엔드게임',
         'movieNmEn': 'Avengers: Endgame',
