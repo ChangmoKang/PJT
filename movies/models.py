@@ -8,10 +8,11 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(default='', max_length=150)
-    summary = models.TextField(default='')
-    director = models.CharField(default='', max_length=45)
     audience = models.IntegerField(default=0)
-    genre = models.ManyToManyField(Genre, related_name='movies')
+    poster_url = models.CharField(default='', max_length=300)
+    description = models.TextField(default='')
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movies')
+    # genre = models.ManyToManyField(Genre, related_name='movies')
 
 
 class Score(models.Model):
