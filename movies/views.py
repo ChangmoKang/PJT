@@ -20,6 +20,10 @@ def movie_index(request):
         'daily_lists': daily_lists,
         'form': ScoreModelForm()
     })
+  
+def movie_suggestions(request):
+    return render(request, 'movies/suggestions.html')
+  
     
 @api_view(['GET', 'POST'])
 def score_create_read(request, movie_id):

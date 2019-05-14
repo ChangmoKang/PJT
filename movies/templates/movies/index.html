@@ -27,7 +27,7 @@
             </div>
         </section>
         <section class="recommendation">
-            <h3 class="section_header">영화 추천<button class="btn btn-crimson advanced_rec">추천 더보기</button></h3>
+            <h3 class="section_header">영화 추천<a href="{% url 'movies:movie_suggestions' %}"><button class="btn btn-crimson advanced_rec">추천 더보기</button></a></h3>
             
             <div class="movie_strip swiper-container2">
                 <div class="swiper-wrapper">
@@ -108,24 +108,30 @@
                             <iframe src="https://www.youtube.com/embed/{{daily_lists.0.trailer}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="movie_modal_text">
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
+                            <div class="movie_modal_text_section">
+                                <p>개요</p>
+                                <p>{{daily_lists.0.openDt}} 개봉&nbsp;&nbsp;|&nbsp;&nbsp;{{daily_lists.0.nations.0.nationNm}}&nbsp;&nbsp;|&nbsp;&nbsp;{{daily_lists.0.showTm}}분</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>장르</p>
+                                <p>{{daily_lists.0.genres.0.genreNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>감독</p>
+                                <p>{{daily_lists.0.directors.0.peopleNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>출연</p>
+                                <p>{{daily_lists.0.actors.0.peopleNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>줄거리</p>
+                                <p>{{daily_lists.0.description}}</p>
+                            </div>
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                     <div class="movie_modal_right">
