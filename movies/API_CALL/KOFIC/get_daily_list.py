@@ -27,6 +27,8 @@ def beautify(url, selector):
     
 def trimming(string):
     string = string.replace(u'\xa0', u' ')
+    string = string.replace(u'\r', u' ')
+    
     return string
 
 
@@ -44,7 +46,7 @@ def save_data(name, data):
 def get_trailer():
     youtubeSearchBaseUrl = "https://www.youtube.com/results?search_query="
     
-    if daily["nationNm"] == '한국':
+    if daily['nations'][0]['nationNm'] == '한국':
         youtubeSearchUrl = youtubeSearchBaseUrl + daily["movieNm"] + " " + "예고편"
     else:
         youtubeSearchUrl = youtubeSearchBaseUrl + daily["movieNmEn"] + " " + "trailer"
@@ -75,15 +77,14 @@ daily_lists = DBO_response.json()['boxOfficeResult']['dailyBoxOfficeList'] # JSO
 
 for daily in daily_lists:
     # audiAcc 단위수 조절
-    daily['audiAcc'] = insert_comma(daily['audiAcc'])
+    # daily['audiAcc'] = insert_comma(daily['audiAcc'])
 
 
 
-    # 영화 영어이름 & 개봉 국가 저장
+    # 영화 데이터 추가
     movie_info_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key={KOFIC_MOVIE_TOKEN}&movieCd={daily["movieCd"]}'
-    movie_info_response = requests.get(movie_info_url).json()
-    daily["movieNmEn"] = movie_info_response["movieInfoResult"]["movieInfo"]["movieNmEn"]
-    daily["nationNm"] = movie_info_response["movieInfoResult"]["movieInfo"]['nations'][0]['nationNm']
+    movie_info_response = requests.get(movie_info_url).json()["movieInfoResult"]["movieInfo"]
+    daily.update(movie_info_response)
 
 
 
@@ -136,32 +137,182 @@ for daily in daily_lists:
     """
     ex. daily
     {
-        'audiAcc': '12,799,661',
-        'audiChange': '-17.9',
-        'audiCnt': '290781',
-        'audiInten': '-63447',
-        'description': '인피니티 워 이후 절반만 살아남은 지구 마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다!  위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!',
-        'movieCd': '20184889',
-        'movieNm': '어벤져스: 엔드게임',
-        'movieNmEn': 'Avengers: Endgame',
-        'nationNm': '미국',
-        'openDt': '2019-04-24',
-        'posterUrl': 'https://movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2',
-        'rank': '1',
-        'rankInten': '0',
-        'rankOldAndNew': 'OLD',
-        'rnum': '1',
-        'salesAcc': '111769644230',
-        'salesAmt': '2662230210',
-        'salesChange': '-18.5',
-        'salesInten': '-604141240',
-        'salesShare': '40.7',
-        'score': '9.51',
-        'scrnCnt': '1665',
-        'showCnt': '6308',
-        'stillCuts': ['https://movie-phinf.pstatic.net/20190423_104/1555994321040d2AcJ_JPEG/movie_image.jpg?type=m665_443_2',
-                    'https://movie-phinf.pstatic.net/20190423_5/1555994321522brgKj_JPEG/movie_image.jpg?type=m665_443_2',
-                    'https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m665_443_2'],
-        'trailer': 'TcMBFSGVi1c'
+        "rnum": "1",
+        "rank": "1",
+        "rankInten": "0",
+        "rankOldAndNew": "OLD",
+        "movieCd": "20184889",
+        "movieNm": "어벤져스: 엔드게임",
+        "openDt": "20190424",
+        "salesAmt": "738244210",
+        "salesShare": "39.8",
+        "salesInten": "-1923986000",
+        "salesChange": "-72.3",
+        "salesAcc": "112507888440",
+        "audiCnt": "82379",
+        "audiInten": "-208402",
+        "audiChange": "-71.7",
+        "audiAcc": "12882040",
+        "scrnCnt": "1537",
+        "showCnt": "5771",
+        "movieNmEn": "Avengers: Endgame",
+        "movieNmOg": "",
+        "showTm": "180",
+        "prdtYear": "2018",
+        "prdtStatNm": "개봉",
+        "typeNm": "장편",
+        "nations": [
+            {
+                "nationNm": "미국"
+            }
+        ],
+        "genres": [
+            {
+                "genreNm": "액션"
+            },
+            {
+                "genreNm": "SF"
+            }
+        ],
+        "directors": [
+            {
+                "peopleNm": "안소니 루소",
+                "peopleNmEn": "Anthony Russo"
+            },
+            {
+                "peopleNm": "조 루소",
+                "peopleNmEn": "Joe Russo"
+            }
+        ],
+        "actors": [
+            {
+                "peopleNm": "로버트 다우니 주니어",
+                "peopleNmEn": "Robert Downey Jr.",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "크리스 에반스",
+                "peopleNmEn": "Chris Evans",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "마크 러팔로",
+                "peopleNmEn": "Mark Ruffalo",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "크리스 헴스워스",
+                "peopleNmEn": "Chris Hemsworth",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "스칼렛 요한슨",
+                "peopleNmEn": "Scarlett Johansson",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "제레미 레너",
+                "peopleNmEn": "Jeremy Renner",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "돈 치들",
+                "peopleNmEn": "Don Cheadle",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "폴 러드",
+                "peopleNmEn": "Paul Rudd",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "브리 라슨",
+                "peopleNmEn": "Brie Larson",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "카렌 길런",
+                "peopleNmEn": "Karen Gillan",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "브래들리 쿠퍼",
+                "peopleNmEn": "Bradley Cooper",
+                "cast": "",
+                "castEn": ""
+            },
+            {
+                "peopleNm": "조슈 브롤린",
+                "peopleNmEn": "Josh Brolin",
+                "cast": "",
+                "castEn": ""
+            }
+        ],
+        "showTypes": [
+            {
+                "showTypeGroupNm": "2D",
+                "showTypeNm": "디지털"
+            },
+            {
+                "showTypeGroupNm": "3D",
+                "showTypeNm": "3D 디지털"
+            },
+            {
+                "showTypeGroupNm": "4D",
+                "showTypeNm": "4D"
+            },
+            {
+                "showTypeGroupNm": "IMAX",
+                "showTypeNm": "IMAX"
+            },
+            {
+                "showTypeGroupNm": "IMAX",
+                "showTypeNm": "IMAX 3D"
+            }
+        ],
+        "companys": [
+            {
+                "companyCd": "20161801",
+                "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+                "companyNmEn": "The Walt Disney Company Korea",
+                "companyPartNm": "배급사"
+            },
+            {
+                "companyCd": "20161801",
+                "companyNm": "월트디즈니컴퍼니코리아 유한책임회사",
+                "companyNmEn": "The Walt Disney Company Korea",
+                "companyPartNm": "수입사"
+            }
+        ],
+        "audits": [
+            {
+                "auditNo": "2019-MF00676",
+                "watchGradeNm": "12세이상관람가"
+            },
+            {
+                "auditNo": "2019-MF00709",
+                "watchGradeNm": "12세이상관람가"
+            }
+        ],
+        "staffs": [],
+        "posterUrl": "https: //movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
+        "description": "인피니티 워 이후 절반만 살아남은 지구 마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다!  위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!",
+        "score": "9.51",
+        "stillCuts": [
+            "https://movie-phinf.pstatic.net/20190423_104/1555994321040d2AcJ_JPEG/movie_image.jpg?type=m665_443_2",
+            "https://movie-phinf.pstatic.net/20190423_5/1555994321522brgKj_JPEG/movie_image.jpg?type=m665_443_2",
+            "https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m665_443_2"
+        ],
+        "trailer": "TcMBFSGVi1c"
     }
     """
