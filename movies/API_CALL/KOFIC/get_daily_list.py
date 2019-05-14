@@ -126,7 +126,6 @@ for daily in daily_lists:
     save_data("stillCuts", stillCuts)
 
 
-
     # Youtube에서 트레일러 ID 가져오기
     trailer = get_trailer()
     save_data('trailer', trailer)
