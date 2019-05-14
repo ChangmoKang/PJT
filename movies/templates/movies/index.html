@@ -8,7 +8,7 @@
                 <div class="swiper-wrapper">
                     {% for list in daily_lists %}
                         <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="{{ list.poster_url }}">
+                            <img src="{{ list.posterUrl }}">
                             <div class="movie_poster_bg"></div>
                             <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>
                             <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>
@@ -33,7 +33,7 @@
                 <div class="swiper-wrapper">
                     {% for list in daily_lists %}
                         <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="{{ list.poster_url }}">
+                            <img src="{{ list.posterUrl }}">
                             <div class="movie_poster_bg"></div>
                             <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>
                             <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>
@@ -71,6 +71,7 @@
                                 <div class="star-ratings-css-bottom">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
+                            {{ daily_lists.0.score }}점
                             <button class="btn btn-sm btn-crimson">Add to watchlist</button>
                         </div>
                     </div>
@@ -83,13 +84,13 @@
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                               <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                  <img src="{{daily_lists.0.subPhoto1}}" class="d-block w-100" alt="...">
+                                  <img src="{{daily_lists.0.stillCuts.0}}" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                  <img src="{{daily_lists.0.subPhoto2}}" class="d-block w-100" alt="...">
+                                  <img src="{{daily_lists.0.stillCuts.1}}" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                  <img src="{{daily_lists.0.subPhoto3}}" class="d-block w-100" alt="...">
+                                  <img src="{{daily_lists.0.stillCuts.2}}" class="d-block w-100" alt="...">
                                 </div>
                               </div>
                               <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -128,6 +129,14 @@
                         </div>
                     </div>
                     <div class="movie_modal_right">
+                        <h3>평점</h3>
+                        <form method="POST" action="{% url 'movies:score_create_read' 1 %}">
+                            {% csrf_token %}
+                            {{ form }}
+                            <button type="submit">!</button>
+                        </form>
+
+
 
                     </div>
                 </div>

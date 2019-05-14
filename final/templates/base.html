@@ -289,16 +289,26 @@
         .movie_modal_left {
             width: 50%;
             float: left;
+            padding-right: 10px;
         }
         .movie_modal_right {
             width: 50%;
             float: right;
+            padding-left: 10px;
         }
         
         @media screen and (max-width: 992px) {
             .movie_modal_left, .movie_modal_right {
                 width: 100%;
                 float: none;
+                padding: 0;
+            }
+            .movie_modal_left {
+                padding-bottom: 10px;
+            }
+            .movie_modal_right {
+                padding-top: 30px;
+                border-top: 1px solid #E3E3E3;
             }
         }
         
