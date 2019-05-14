@@ -27,7 +27,29 @@
             </div>
         </section>
         <section class="recommendation">
-            <h3 class="section_header">영화 추천</h3>
+            <h3 class="section_header">영화 추천<button class="btn btn-crimson advanced_rec">추천 더보기</button></h3>
+            
+            <div class="movie_strip swiper-container2">
+                <div class="swiper-wrapper">
+                    {% for list in daily_lists %}
+                        <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">
+                            <img src="{{ list.poster_url }}">
+                            <div class="movie_poster_bg"></div>
+                            <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>
+                            <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>
+                            <div class="movie_preview_text movie_score">
+                                <div class="star-ratings-css">
+                                    <div class="star-ratings-css-top" style="width: calc({{ list.score }} * 10)%">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    <div class="star-ratings-css-bottom">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
         </section>
         <section class="recent_scores">
             <h3 class="section_header">최신 평점</h3>
@@ -39,9 +61,9 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body modal_head">
+                    <h3 class="movie_modal_title">{{ daily_lists.0.movieNm }} [{{daily_lists.0.openDt | slice:"0:4"}}]</h3>
                     <div class="movie_modal_left">
-                        <h3 class="movie_modal_title">{{ daily_lists.0.movieNm }} [{{daily_lists.0.openDt | slice:"0:4"}}]</h3>
                         <div class="movie_modal_score">
                             <div class="star-ratings-css">
                                 <div class="star-ratings-css-top" style="width: 90%">
@@ -49,9 +71,13 @@
                                 <div class="star-ratings-css-bottom">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
-                            <button class="btn btn-sm btn-primary">Add to watchlist</button>
+                            <button class="btn btn-sm btn-crimson">Add to watchlist</button>
                         </div>
-                        
+                    </div>
+                </div>
+                
+                <div class="modal-body modal_content">
+                    <div class="movie_modal_left">
                         <div class="movie_modal_stills">
                             
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
