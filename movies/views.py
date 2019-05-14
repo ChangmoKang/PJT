@@ -16,7 +16,7 @@ def movie_index(request):
     return render(request, 'movies/index.html', {
         'movies': Movie.objects.all(),
         'date': YESTERDAY,
-        'daily_lists': json.loads(daily_lists),
+        'daily_lists': daily_lists,
     })
   
 

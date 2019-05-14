@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
+    'mathfilters',
     'django_extensions',
     'rest_framework',
     'rest_framework_swagger',

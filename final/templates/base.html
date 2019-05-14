@@ -31,8 +31,14 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    
     <!-- VUE.JS -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <style>
         * {
@@ -171,6 +177,7 @@
             line-height: 40px;
             padding: 0 20px;
             font-weight: bold;
+            color: #C60021;
         }
 
         .movie_strip {
@@ -297,11 +304,13 @@
             width: 50%;
             float: left;
             padding-right: 10px;
+            overflow: hidden;
         }
         .movie_modal_right {
             width: 50%;
             float: right;
             padding-left: 10px;
+            overflow: hidden;
         }
         
         @media screen and (max-width: 992px) {
@@ -364,6 +373,7 @@
         .movie_modal_text_section {
             width: 100%;
             color: #181818;
+            overflow: hidden;
         }
         .movie_modal_text_section p:first-child {
             width: 55px;
@@ -375,6 +385,7 @@
         .movie_modal_text_section p:last-child {
             float: right;
             width: calc(100% - 55px);
+            overflow: hidden;
         }
 
 
@@ -461,7 +472,11 @@
         
         /* * * * * * * * *  SUGGESTIONS PAGE * * * * * * * * */
         
-        
+        .suggMainContainer {
+            margin-top: 50px;
+            width: 100%;
+            padding: 20px;
+        }
         
         
         
@@ -501,28 +516,47 @@
     </div>
 
 
-    <!-- Swiper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+    
     
     
     <script>
         
         const app = new Vue({
+            delimiters: ['[[', ']]'],
             el: '#wrap',
             data: {
                 rating_score: 0,
-                tmp: '',
-                scoreHover: false
+                ratingScoreTmp: '',
+                scoreHover: false,
+                dailyListMovies: [],
+                currentMovie: '',
             },
             methods: {
                 scoreHoverOver(num) {
                     this.scoreHover = true
-                    this.tmp = num
+                    this.ratingScoreTmp = num
                 },
                 scoreHoverLeave() {
                     this.scoreHover = false
                 }
+            },
+            filters: {
+                getYear(value) {
+                    if (!value) {
+                        return ''
+                    }
+                    return value.slice(0, 4)
+                },
+                // dateKoreanFormat(value) {
+                //     if (!value) {
+                //         return ''
+                //     }
+                //     return `${value.slice(0, 4)}년 ${value.slice(4, 6)}월 ${value.slice(6, 8)}일`
+                // }
             }
+            // created() {
+            //     this.dailyListMovies = {{ daily_lists }}
+            // }
         });
         
         var swiper = new Swiper('.swiper-container', {
