@@ -230,6 +230,9 @@
             /* overflow: hidden; */
         }
 
+
+        /* * * * * * * * *  STAR RATING PERCENTAGE * * * * * * * * */
+
         @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
 
         .star-ratings-css {
@@ -281,6 +284,10 @@
             padding-bottom: 0;
         }
         
+        .movie_modal_title {
+            letter-spacing: 1px;
+        }
+        
         .modal-body {
             /*height: 500px;*/
             /*overflow-y: auto;*/
@@ -312,14 +319,15 @@
             }
         }
         
-        
         .movie_modal_score {
             height: 35px;
+            line-height: 35px;
             margin-top: 10px;
         }
         .movie_modal_score .star-ratings-css {
             width: 90px;
             float: left;
+            margin-right: 5px;
         }
         .movie_modal_score button {
             float: right;
@@ -337,7 +345,6 @@
             overflow: hidden;
         }
         
-
         .movie_modal_trailer {
             width: 100%;
             height: 200px;
@@ -348,10 +355,93 @@
         }
         
         .movie_modal_text {
-            
+            margin-top: 20px;
+            border-top: 1px solid #E3E3E3;
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        .movie_modal_text_section {
+            width: 100%;
+            color: #181818;
+        }
+        .movie_modal_text_section p:first-child {
+            width: 55px;
+            font-weight: bold;
+            color: #C60021;
+            font-size: 16px;
+            float: left;
+        }
+        .movie_modal_text_section p:last-child {
+            float: right;
+            width: calc(100% - 55px);
         }
 
 
+        /* * * * * * * * *  SCORE FORM (MODAL) * * * * * * * * */
+        .score_form_outer {
+            width: 100%;
+            height: 35px;
+        }
+
+        .star_rate {
+            width: 83px;
+            height: 32px;
+            float: left;
+        }
+        .rating {
+            overflow: hidden;
+            display: inline-block;
+        }
+        .rating-input {
+            float: right;
+            margin: 0 0 0 -16px;
+            opacity: 0;
+        }
+        .rating-star {
+            cursor: pointer;
+            position: relative;
+            display: block;
+            width: 16px;
+            font-size: 16px;
+            height: 16px;
+            color: #E3E3E3;
+            float: right;
+        }
+
+        .rating:hover .rating-star:hover, 
+        .rating:hover .rating-star:hover ~ .rating-star,
+        .rating-input:checked ~ .rating-star {
+            color: #FA534F;
+        }
+
+        .rating:hover .rating-star {
+            color: #E3E3E3;
+        }
+
+        .score_input {
+            float: left;
+            width: calc(100% - 83px - 110px);
+            height: 30px;
+            margin-left: 10px;
+            border: 1px solid #E3E3E3;
+            border-radius: 3px;
+        }
+        .score_input:focus {
+            outline-color: #C60021;
+        }
+
+        .score_btn {
+            float: left;
+            margin-left: 10px;
+        }
+        .score_num {
+            float: left;
+            width: 30px;
+            margin-left: 5px;
+            line-height: 27px;
+            font-size: 14px;
+        }
 
 
         /* * * * * * * * *  FOOTER * * * * * * * * */
@@ -403,7 +493,25 @@
     
     
     <script>
-    
+        
+        const app = new Vue({
+            el: '#wrap',
+            data: {
+                rating_score: 0,
+                tmp: '',
+                scoreHover: false
+            },
+            methods: {
+                scoreHoverOver(num) {
+                    this.scoreHover = true
+                    this.tmp = num
+                },
+                scoreHoverLeave() {
+                    this.scoreHover = false
+                }
+            }
+        });
+        
         var swiper = new Swiper('.swiper-container', {
             effect: 'coverflow',
             grabCursor: true,

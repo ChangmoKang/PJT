@@ -27,7 +27,7 @@
             </div>
         </section>
         <section class="recommendation">
-            <h3 class="section_header">영화 추천<button class="btn btn-crimson advanced_rec">추천 더보기</button></h3>
+            <h3 class="section_header">영화 추천<a href="{% url 'movies:movie_suggestions' %}"><button class="btn btn-crimson advanced_rec">추천 더보기</button></a></h3>
             
             <div class="movie_strip swiper-container2">
                 <div class="swiper-wrapper">
@@ -108,35 +108,65 @@
                             <iframe src="https://www.youtube.com/embed/{{daily_lists.0.trailer}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                         <div class="movie_modal_text">
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
-                            modal text <br>
+                            <div class="movie_modal_text_section">
+                                <p>개요</p>
+                                <p>{{daily_lists.0.openDt}} 개봉&nbsp;&nbsp;|&nbsp;&nbsp;{{daily_lists.0.nations.0.nationNm}}&nbsp;&nbsp;|&nbsp;&nbsp;{{daily_lists.0.showTm}}분</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>장르</p>
+                                <p>{{daily_lists.0.genres.0.genreNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>감독</p>
+                                <p>{{daily_lists.0.directors.0.peopleNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>출연</p>
+                                <p>{{daily_lists.0.actors.0.peopleNm}}</p>
+                            </div>
+                            <div class="movie_modal_text_section">
+                                <p>줄거리</p>
+                                <p>{{daily_lists.0.description}}</p>
+                            </div>
+                            
+                            
+                            
+                            
                         </div>
                     </div>
                     <div class="movie_modal_right">
-                        <h3>평점</h3>
-                        <form method="POST" action="{% url 'movies:score_create_read' 1 %}">
-                            {% csrf_token %}
-                            {{ form }}
-                            <button type="submit">!</button>
-                        </form>
-
-
+                        <h4>평점</h4>
+                        <div class="score_form_outer">
+                            <div class="star_rate">
+                                <span class="rating">
+                                    <input type="radio" class="rating-input"
+                                            id="rating-input-1-5" name="rating-input-1" value=10 v-model="rating_score">
+                                    <label for="rating-input-1-5" class="rating-star" title="10" @mouseover="scoreHoverOver(10)" @mouseleave="scoreHoverLeave()">★</label>
+                                    
+                                    <input type="radio" class="rating-input"
+                                            id="rating-input-1-4" name="rating-input-1" value=8 v-model="rating_score">
+                                    <label for="rating-input-1-4" class="rating-star" title="8" @mouseover="scoreHoverOver(8)" @mouseleave="scoreHoverLeave()">★</label>
+                                    
+                                    <input type="radio" class="rating-input"
+                                            id="rating-input-1-3" name="rating-input-1" value=6 v-model="rating_score">
+                                    <label for="rating-input-1-3" class="rating-star" title="6" @mouseover="scoreHoverOver(6)" @mouseleave="scoreHoverLeave()">★</label>
+                                    
+                                    <input type="radio" class="rating-input"
+                                            id="rating-input-1-2" name="rating-input-1" value=4 v-model="rating_score">
+                                    <label for="rating-input-1-2" class="rating-star" title="4" @mouseover="scoreHoverOver(4)" @mouseleave="scoreHoverLeave()">★</label>
+                                    
+                                    <input type="radio" class="rating-input"
+                                            id="rating-input-1-1" name="rating-input-1" value=2 v-model="rating_score">
+                                    <label for="rating-input-1-1" class="rating-star" title="2" @mouseover="scoreHoverOver(2)" @mouseleave="scoreHoverLeave()">★</label>
+                                </span>
+                            </div>
+                            <div class="score_num">
+                                <span v-if="scoreHover">{{tmp}}10점</span>
+                                <span v-else>{{ rating_score }}0점</span>
+                            </div>
+                            <input type="text" class="score_input">
+                            <button class="btn btn-sm btn-crimson score_btn">등록</button>
+                        </div>
 
                     </div>
                 </div>

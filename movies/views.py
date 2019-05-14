@@ -16,7 +16,7 @@ def movie_index(request):
         'date': YESTERDAY,
         'daily_lists': daily_lists,
     })
-
+  
 
 @login_required
 @require_POST
@@ -53,12 +53,17 @@ def score_delete(request, movie_id, score_id):
     return redirect('movies:movie_index')
 
 
+def movie_suggestions(request):
+    return render(request, 'movies/suggestions.html')
+
 
 """ REST API
 # from django.contrib.auth import get_user_model
 # from rest_framework.decorators import api_view
 # from rest_framework.response import Response
 # from .serializers import ScoreSerializer
+
+
 
 @api_view(['GET', 'POST'])
 def score_create_read(request, movie_id):
