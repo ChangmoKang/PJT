@@ -4,6 +4,7 @@ from django.conf import settings
 
 class Genre(models.Model):
     genreNm = models.CharField(default='', max_length=150)
+    selected = models.BooleanField(default=False)
 
 
 class Nation(models.Model):
