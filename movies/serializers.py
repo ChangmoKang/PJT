@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from .models import Score
+from .models import Movie, Score
+
+class MovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = '__all__'
 
 
 class ScoreSerializer(serializers.ModelSerializer):

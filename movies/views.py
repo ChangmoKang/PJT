@@ -8,6 +8,10 @@ from .forms import ScoreModelForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import MovieSerializer, ScoreSerializer
+
 # from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 # from .API_CALL.KOFIC.get_json import a
 
@@ -24,6 +28,13 @@ def movie_index(request):
         # 'date': YESTERDAY,
         # 'daily_lists': daily_lists,
     })
+    
+
+@api_view(['GET'])
+def movie_get(request):
+    movies = Movie.objects.all()
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)  
   
 
 @login_required
@@ -67,9 +78,6 @@ def movie_suggestions(request):
 
 """ REST API
 # from django.contrib.auth import get_user_model
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
-# from .serializers import ScoreSerializer
 
 
 

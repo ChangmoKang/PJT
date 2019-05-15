@@ -672,7 +672,7 @@
                     else {
                         genre.selected = true;
                     }
-                }
+                },
             },
             filters: {
                 getYear(value) {
@@ -681,6 +681,11 @@
                     }
                     return value.slice(0, 4)
                 },
+            },
+            async created() {
+                const URL = 'https://final-pjt-dkssudckdah.c9users.io/movies/get/'
+                const response = await axios.get(URL)
+                this.dailyListMovies = response.data
             }
         });
         
