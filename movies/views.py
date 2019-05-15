@@ -6,7 +6,8 @@ from .forms import ScoreModelForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
+# from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
+from .API_CALL.KOFIC.get_json import a
 
 
 # Create your views here.
@@ -17,8 +18,8 @@ def intro(request):
 def movie_index(request):
     return render(request, 'movies/index.html', {
         'movies': Movie.objects.all(),
-        'date': YESTERDAY,
-        'daily_lists': daily_lists,
+        # 'date': YESTERDAY,
+        # 'daily_lists': daily_lists,
     })
   
 
