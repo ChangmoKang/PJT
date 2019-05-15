@@ -1,9 +1,49 @@
 {% extends 'base.html' %}
     
 {% block body %}
-<div class="suggMainContainer">
+<div id="suggMainContainer">
     <h3 class="section_header">영화 상세 추천</h3>
+    <div class="optionSelectBox">
+        <div class="genreSelectMenu">
+            <input type="checkbox" name="cb" id="genreCB">
+            <label for="genreCB" class="genreCheckbox">장르 선택</label>
+            <div class="genreOptions">
+                <span v-for="genre in genres" class="genreOption" @click="genreSelectToggle(genre)"
+                :class="{selectedGenre: genre.selected}">[[genre.name]]</span>
+            </div>
+        </div>
+        <div class="nationSelectMenu">
+            <input type="checkbox" name="cb2" id="nationCB">
+            <label for="nationCB" class="nationCheckbox">국가 선택</label>
+            <div class="nationOptions">
+                <input type="radio" name="rd" id="rdAll">
+                <label for="rdAll" class="nationRadio">전체</label><br>
+                <input type="radio" name="rd" id="rdKor">
+                <label for="rdKor" class="nationRadio">국내</label><br>
+                <input type="radio" name="rd" id="rdInt">
+                <label for="rdInt" class="nationRadio">해외</label>
+            </div>
+        </div>
+    </div>
+    <div class="suggResults">
+
+    </div>
     
+    
+    
+    <!--<div class="optionSelectBox">-->
+    <!--    <div class="genreSelectMenu">-->
+    <!--        GENRE-->
+    <!--        <ul class="inner_ul">-->
+    <!--            <li v-for="genre in genres" -->
+    <!--                class="inner_li"-->
+    <!--                @click="genreSelectToggle(genre)"-->
+    <!--                :class="{selectedGenre: genre.selected}">-->
+    <!--                [[genre.name]]-->
+    <!--            </li>-->
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--</div>-->
     
 </div>
 {% endblock %}
