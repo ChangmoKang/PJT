@@ -78,7 +78,7 @@ DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/search
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180913'
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180113'
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20190313'
-# DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180513'
+# DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20190513'
 DBO_response = requests.get(DBO_url)
 daily_lists = DBO_response.json()['boxOfficeResult']['dailyBoxOfficeList'] # JSON File
 

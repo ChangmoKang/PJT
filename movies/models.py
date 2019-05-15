@@ -40,6 +40,9 @@ class Movie(models.Model):
     stillCut = models.ManyToManyField(StillCut, related_name='movies')
     selected = models.BooleanField(default=False)
     
+    def __str__(self):
+        return self.movieNm
+    
 
 class Score(models.Model):
     comment = models.TextField(default='')

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie, Score
+from .models import Movie, Score, Genre, Nation, Director, Actor, StillCut
 
 
 from datetime import datetime
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import MovieSerializer, ScoreSerializer
+from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer, NationSerializer, DirectorSerializer, ActorSerializer, StillCutSerializer
 
 # from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 # from .API_CALL.KOFIC.get_json import a
@@ -34,6 +34,41 @@ def movie_index(request):
 def movie_get(request):
     movies = Movie.objects.all()
     serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
+    
+    
+@api_view(['GET'])
+def genre_get(request):
+    genres = Genre.objects.all()
+    serializer = GenreSerializer(genres, many=True)
+    return Response(serializer.data)  
+    
+    
+@api_view(['GET'])
+def nation_get(request):
+    nations = Nation.objects.all()
+    serializer = NationSerializer(nations, many=True)
+    return Response(serializer.data)  
+    
+    
+@api_view(['GET'])
+def director_get(request):
+    directors = Director.objects.all()
+    serializer = DirectorSerializer(directors, many=True)
+    return Response(serializer.data)  
+    
+    
+@api_view(['GET'])
+def actor_get(request):
+    actors = Actor.objects.all()
+    serializer = ActorSerializer(actors, many=True)
+    return Response(serializer.data)  
+    
+    
+@api_view(['GET'])
+def stillCut_get(request):
+    stillCuts = StillCut.objects.all()
+    serializer = StillCutSerializer(stillCuts, many=True)
     return Response(serializer.data)  
   
 
