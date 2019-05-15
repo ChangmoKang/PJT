@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Movie, Score
 
+
+from datetime import datetime
 from .forms import ScoreModelForm
 
 from django.views.decorators.http import require_POST
@@ -17,7 +19,8 @@ def intro(request):
 
 def movie_index(request):
     return render(request, 'movies/index.html', {
-        'movies': Movie.objects.all(),
+        'daily_lists': list(Movie.objects.all()),
+        'date': int(datetime.today().strftime('%Y%m%d')) - 1
         # 'date': YESTERDAY,
         # 'daily_lists': daily_lists,
     })

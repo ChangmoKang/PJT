@@ -39,7 +39,7 @@ class Movie(models.Model):
     actor = models.ManyToManyField(Actor, related_name='movies')
     stillCut = models.ManyToManyField(StillCut, related_name='movies')
     selected = models.BooleanField(default=False)
-
+    
 
 class Score(models.Model):
     comment = models.TextField(default='')
