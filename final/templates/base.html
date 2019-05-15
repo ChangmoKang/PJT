@@ -127,6 +127,7 @@
             float: left;
             margin: 0 15px;
             color: #6C6C6C;
+            font-weight: bold;
         }
         .nav_item:hover {
             /*color: #181818;*/
@@ -458,11 +459,14 @@
         /* * * * * * * * *  FOOTER * * * * * * * * */
         footer {
             width: 100%;
-            height: 200px;
+            height: 150px;
             background-color: #630010;
             color: #F6F6F8;
-            font-size: 30px;
-            text-align: center;
+            padding: 20px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 14px;
         }
         
         
@@ -475,7 +479,9 @@
         #suggMainContainer {
             margin-top: 50px;
             width: 100%;
+            height: calc(100vh - 100px);
             padding: 20px;
+            overflow-y: auto;
         }
 
         .optionSelectBox {
@@ -546,7 +552,13 @@
         }
         
         
+        /* * * * * * * * *  FORMS * * * * * * * * */
         
+        .formSection {
+            width: 600px;
+            margin: 50px auto;
+            padding-top: 40px;
+        }
         
         
     </style>
@@ -578,7 +590,10 @@
         {% endblock %}
 
         <footer>
-            Footer
+            <h4>KCM의 흑백영화</h4>
+            <p>SSAFY 1기 서울 1반 최종 프로젝트 (2019년 5월)</p>
+            <p>강창모: dkssudckdah@gmail.com</p>
+            <p>윤지원: jiwonjulietyoon@gmail.com</p>
         </footer>
 
     </div>

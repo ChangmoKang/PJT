@@ -3,13 +3,17 @@
 {% load bootstrap4 %}
 
 {% block body%}
-<form method="post">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  {% buttons %}
-    <button type="submit" class="btn btn-primary">
-      Submit
-    </button>
-  {% endbuttons %}
-</form>
+<div class="main_section">
+  <div class="formSection">
+    <form method="POST">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button type="submit" class="btn btn-crimson">
+          Go!
+        </button>
+      {% endbuttons %}
+    </form>
+  </div>
+</div>
 {% endblock%}
