@@ -472,11 +472,79 @@
         
         /* * * * * * * * *  SUGGESTIONS PAGE * * * * * * * * */
         
-        .suggMainContainer {
+        #suggMainContainer {
             margin-top: 50px;
             width: 100%;
             padding: 20px;
         }
+
+        .optionSelectBox {
+            margin: 10px auto;
+            width: 550px;
+            height: 160px;
+            /* border: 1px solid hotpink; */
+        }
+        .genreSelectMenu {
+            width: 400px;
+            float: left;
+        }
+        .genreCheckbox, .nationCheckbox {
+            width: 100px;
+            height: 40px; line-height: 36px;
+            font-weight: bold;
+            text-align: center;
+            color: #F6F6F8;
+            background: linear-gradient(to bottom, #C60021, rgb(95, 0, 16));
+            border: 3px outset #C60021;
+            border-radius: 5px;
+        }
+        .genreCheckbox:hover, .nationCheckbox:hover {
+            background: #C60021;
+        }
+        #genreCB, #nationCB {
+            display: none;
+        }
+        #genreCB:checked ~ .genreOptions,
+        #nationCB:checked ~ .nationOptions {
+            display: block;
+        }
+        .genreOptions, .nationOptions {
+            width: 100%;
+            display: none;
+        }
+        .genreOption {
+            display: inline-block;
+            padding: 2px 10px;
+            margin: 2px 3px;
+            border-radius: 10px;
+            border: 2px solid #C60021;
+            color: #181818;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .selectedGenre {
+            background: linear-gradient(to bottom, #C60021, rgb(95, 0, 16));;
+            color: #F6F6F8;
+        }
+
+        .nationSelectMenu {
+            width: 130px;
+            margin-left: 20px;
+            float: left;
+        }
+        .nationRadio {
+            font-weight: bold;
+            color: #C60021;
+            font-size: 14px;
+        }
+
+        .suggResults {
+            width: 100%;
+            height: 300px;
+            border: 1px solid royalblue;
+        }
+        
         
         
         
@@ -530,6 +598,23 @@
                 scoreHover: false,
                 dailyListMovies: [],
                 currentMovie: '',
+                genres: [
+                    {pk: 1, name: "가족", selected: false},
+                    {pk: 2, name: "공포(호러)", selected: false},
+                    {pk: 3, name: "드라마", selected: false},
+                    {pk: 4, name: "멜로/로맨스", selected: false},
+                    {pk: 5, name: "미스터리", selected: false},
+                    {pk: 6, name: "사극", selected: false},
+                    {pk: 7, name: "스릴러", selected: false},
+                    {pk: 8, name: "액션", selected: false},
+                    {pk: 9, name: "어드벤처", selected: false},
+                    {pk: 10, name: "판타지", selected: false},
+                    {pk: 11, name: "코미디", selected: false},
+                    {pk: 12, name: "애니메이션", selected: false},
+                    {pk: 13, name: "범죄", selected: false},
+                    {pk: 14, name: "SF", selected: false},
+                    {pk: 15, name: "뮤지컬", selected: false}
+                ],
             },
             methods: {
                 scoreHoverOver(num) {
@@ -538,6 +623,14 @@
                 },
                 scoreHoverLeave() {
                     this.scoreHover = false
+                },
+                genreSelectToggle(genre) {
+                    if (genre.selected) {
+                        genre.selected = false;
+                    }
+                    else {
+                        genre.selected = true;
+                    }
                 }
             },
             filters: {
@@ -547,16 +640,7 @@
                     }
                     return value.slice(0, 4)
                 },
-                // dateKoreanFormat(value) {
-                //     if (!value) {
-                //         return ''
-                //     }
-                //     return `${value.slice(0, 4)}년 ${value.slice(4, 6)}월 ${value.slice(6, 8)}일`
-                // }
             }
-            // created() {
-            //     this.dailyListMovies = {{ daily_lists }}
-            // }
         });
         
         var swiper = new Swiper('.swiper-container', {
@@ -586,6 +670,9 @@
                 slideShadows: true,
             },
         });
+        
+
+        
     </script>
 </body>
 
