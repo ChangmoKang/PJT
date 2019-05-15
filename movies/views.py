@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer, NationSerializer, DirectorSerializer, ActorSerializer, StillCutSerializer
 
-# from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
+from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 # from .API_CALL.KOFIC.get_json import a
 
 
@@ -23,10 +23,10 @@ def intro(request):
 
 def movie_index(request):
     return render(request, 'movies/index.html', {
-        'daily_lists': list(Movie.objects.all()),
-        'date': int(datetime.today().strftime('%Y%m%d')) - 1
+        # 'daily_lists': list(Movie.objects.all()),
+        'date': int(datetime.today().strftime('%Y%m%d')) - 1,
         # 'date': YESTERDAY,
-        # 'daily_lists': daily_lists,
+        'daily_lists': daily_lists,
     })
     
 

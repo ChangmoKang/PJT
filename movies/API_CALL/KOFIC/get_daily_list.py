@@ -74,11 +74,11 @@ NAVER_MOVIE_BASE_URL = 'https://movie.naver.com/movie'
 
 
 # KOFIC Daily Box Office(DBO)
-DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180713'
+# DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180713'
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180913'
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20180113'
 # DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20190313'
-# DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20190513'
+DBO_url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key={KOFIC_MOVIE_TOKEN}&targetDt=20190513'
 DBO_response = requests.get(DBO_url)
 daily_lists = DBO_response.json()['boxOfficeResult']['dailyBoxOfficeList'] # JSON File
 
@@ -325,6 +325,7 @@ for daily in daily_lists:
     }
     """
 
+movie_dics = []
 movie_genre_dics = []
 movie_nation_dics = []
 movie_director_dics = []
@@ -336,46 +337,46 @@ for i in range(len(daily_lists)):
     director_lists = []
     actor_lists = []
     stillCut_lists = []
-    # movie = {
-    #     "pk": i + 41,
-    #     "model": "movies.movie",
-    #     "fields": {
-    #         "movieCd": daily_lists[i]["movieCd"],
-    #         "movieNm": daily_lists[i]["movieNm"],
-    #         "openDt": daily_lists[i]["openDt"],
-    #         "audiAcc": daily_lists[i]["audiAcc"],
-    #         "movieNmEn": daily_lists[i]["movieNmEn"],
-    #         "showTm": daily_lists[i]["showTm"],
-    #         "posterUrl": daily_lists[i]["posterUrl"],
-    #         "description": daily_lists[i]["description"],
-    #         "score": daily_lists[i]["score"],
-    #         "trailer": daily_lists[i]["trailer"]
-    #     }
-    # }
-    # movie_dics.append(movie)
+    movie = {
+        "pk": i + 41,
+        "model": "movies.movie",
+        "fields": {
+            "movieCd": daily_lists[i]["movieCd"],
+            "movieNm": daily_lists[i]["movieNm"],
+            "openDt": daily_lists[i]["openDt"],
+            "audiAcc": daily_lists[i]["audiAcc"],
+            "movieNmEn": daily_lists[i]["movieNmEn"],
+            "showTm": daily_lists[i]["showTm"],
+            "posterUrl": daily_lists[i]["posterUrl"],
+            "description": daily_lists[i]["description"],
+            "score": daily_lists[i]["score"],
+            "trailer": daily_lists[i]["trailer"]
+        }
+    }
+    movie_dics.append(movie)
     
     for j in range(len(daily_lists[i]["genres"])):
         genre = daily_lists[i]["genres"][j]["genreNm"]
-        # if genre not in genre_lists:
-        genre_lists.append(genre)
+        if genre not in genre_lists:
+            genre_lists.append(genre)
     movie_genre_dics.append(genre_lists)
     
     for k in range(len(daily_lists[i]["nations"])):
         nation = daily_lists[i]["nations"][k]["nationNm"]
-        # if nation not in nation_lists:
-        nation_lists.append(nation)
+        if nation not in nation_lists:
+            nation_lists.append(nation)
     movie_nation_dics.append(nation_lists)
             
     for x in range(len(daily_lists[i]["directors"])):
         director = daily_lists[i]["directors"][x]["peopleNm"]
-        # if director not in director_lists:
-        director_lists.append(director)
+        if director not in director_lists:
+            director_lists.append(director)
     movie_director_dics.append(director_lists)
             
     for y in range(len(daily_lists[i]["actors"])):
         actor = daily_lists[i]["actors"][y]["peopleNm"]
-        # if actor not in actor_lists:
-        actor_lists.append(actor)
+        if actor not in actor_lists:
+            actor_lists.append(actor)
     movie_actor_dics.append(actor_lists)
         
     for z in range(len(daily_lists[i]["stillCuts"])):
@@ -384,12 +385,12 @@ for i in range(len(daily_lists)):
     movie_stillCut_dics.append(stillCut_lists)
     
         
-# print(movie_dics,end="\n")
-# print(genre_lists,end="\n")
-# print(nation_lists,end="\n")
-# print(director_lists,end="\n")
-# print(actor_lists,end="\n")
-# print(stillCut_lists,end="\n")
+print(movie_dics,end="\n")
+print(movie_genre_dics,end="\n")
+print(movie_nation_dics,end="\n")
+print(movie_director_dics,end="\n")
+print(movie_actor_dics,end="\n")
+print(movie_stillCut_dics,end="\n")
 
 
 # print(list(enumerate(movie_genre_dics, 41)),end='\n')
