@@ -59,13 +59,18 @@ def get_trailer():
         if '/watch?v=' in result.get('href'):
             return result.get('href')[9:]
             
+            
+def single_to_double(string):
+    string = string.replace("'",'"')
+    return string
+            
     
-
 
 # BASE
 KOFIC_MOVIE_TOKEN = os.getenv('KOFIC_MOVIE_TOKEN')
 YESTERDAY = int(datetime.today().strftime('%Y%m%d')) - 1
 NAVER_MOVIE_BASE_URL = 'https://movie.naver.com/movie'
+
 
 
 # KOFIC Daily Box Office(DBO)
@@ -140,9 +145,9 @@ for daily in daily_lists:
         "rank": "1",
         "rankInten": "0",
         "rankOldAndNew": "OLD",
-        "movieCd": "20184889",
-        "movieNm": "어벤져스: 엔드게임",
-        "openDt": "20190424",
+        # "movieCd": "20184889",
+        # "movieNm": "어벤져스: 엔드게임",
+        # "openDt": "20190424",
         "salesAmt": "738244210",
         "salesShare": "39.8",
         "salesInten": "-1923986000",
@@ -151,112 +156,112 @@ for daily in daily_lists:
         "audiCnt": "82379",
         "audiInten": "-208402",
         "audiChange": "-71.7",
-        "audiAcc": "12882040",
+        # "audiAcc": "12882040",
         "scrnCnt": "1537",
         "showCnt": "5771",
-        "movieNmEn": "Avengers: Endgame",
+        # "movieNmEn": "Avengers: Endgame",
         "movieNmOg": "",
-        "showTm": "180",
+        # "showTm": "180",
         "prdtYear": "2018",
         "prdtStatNm": "개봉",
         "typeNm": "장편",
-        "nations": [
-            {
-                "nationNm": "미국"
-            }
-        ],
-        "genres": [
-            {
-                "genreNm": "액션"
-            },
-            {
-                "genreNm": "SF"
-            }
-        ],
-        "directors": [
-            {
-                "peopleNm": "안소니 루소",
-                "peopleNmEn": "Anthony Russo"
-            },
-            {
-                "peopleNm": "조 루소",
-                "peopleNmEn": "Joe Russo"
-            }
-        ],
-        "actors": [
-            {
-                "peopleNm": "로버트 다우니 주니어",
-                "peopleNmEn": "Robert Downey Jr.",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "크리스 에반스",
-                "peopleNmEn": "Chris Evans",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "마크 러팔로",
-                "peopleNmEn": "Mark Ruffalo",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "크리스 헴스워스",
-                "peopleNmEn": "Chris Hemsworth",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "스칼렛 요한슨",
-                "peopleNmEn": "Scarlett Johansson",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "제레미 레너",
-                "peopleNmEn": "Jeremy Renner",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "돈 치들",
-                "peopleNmEn": "Don Cheadle",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "폴 러드",
-                "peopleNmEn": "Paul Rudd",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "브리 라슨",
-                "peopleNmEn": "Brie Larson",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "카렌 길런",
-                "peopleNmEn": "Karen Gillan",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "브래들리 쿠퍼",
-                "peopleNmEn": "Bradley Cooper",
-                "cast": "",
-                "castEn": ""
-            },
-            {
-                "peopleNm": "조슈 브롤린",
-                "peopleNmEn": "Josh Brolin",
-                "cast": "",
-                "castEn": ""
-            }
-        ],
+        # "nations": [
+        #     {
+        #         "nationNm": "미국"
+        #     }
+        # ],
+        # "genres": [
+        #     {
+        #         "genreNm": "액션"
+        #     },
+        #     {
+        #         "genreNm": "SF"
+        #     }
+        # ],
+        # "directors": [
+        #     {
+        #         "peopleNm": "안소니 루소",
+        #         "peopleNmEn": "Anthony Russo"
+        #     },
+        #     {
+        #         "peopleNm": "조 루소",
+        #         "peopleNmEn": "Joe Russo"
+        #     }
+        # ],
+        # "actors": [
+        #     {
+        #         "peopleNm": "로버트 다우니 주니어",
+        #         "peopleNmEn": "Robert Downey Jr.",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "크리스 에반스",
+        #         "peopleNmEn": "Chris Evans",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "마크 러팔로",
+        #         "peopleNmEn": "Mark Ruffalo",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "크리스 헴스워스",
+        #         "peopleNmEn": "Chris Hemsworth",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "스칼렛 요한슨",
+        #         "peopleNmEn": "Scarlett Johansson",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "제레미 레너",
+        #         "peopleNmEn": "Jeremy Renner",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "돈 치들",
+        #         "peopleNmEn": "Don Cheadle",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "폴 러드",
+        #         "peopleNmEn": "Paul Rudd",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "브리 라슨",
+        #         "peopleNmEn": "Brie Larson",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "카렌 길런",
+        #         "peopleNmEn": "Karen Gillan",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "브래들리 쿠퍼",
+        #         "peopleNmEn": "Bradley Cooper",
+        #         "cast": "",
+        #         "castEn": ""
+        #     },
+        #     {
+        #         "peopleNm": "조슈 브롤린",
+        #         "peopleNmEn": "Josh Brolin",
+        #         "cast": "",
+        #         "castEn": ""
+        #     }
+        # ],
         "showTypes": [
             {
                 "showTypeGroupNm": "2D",
@@ -304,14 +309,15 @@ for daily in daily_lists:
             }
         ],
         "staffs": [],
-        "posterUrl": "https: //movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
-        "description": "인피니티 워 이후 절반만 살아남은 지구 마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다!  위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!",
-        "score": "9.51",
-        "stillCuts": [
-            "https://movie-phinf.pstatic.net/20190423_104/1555994321040d2AcJ_JPEG/movie_image.jpg?type=m665_443_2",
-            "https://movie-phinf.pstatic.net/20190423_5/1555994321522brgKj_JPEG/movie_image.jpg?type=m665_443_2",
-            "https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m665_443_2"
-        ],
-        "trailer": "TcMBFSGVi1c"
+        # "posterUrl": "https: //movie-phinf.pstatic.net/20190417_250/1555465284425i6WQE_JPEG/movie_image.jpg?type=m203_290_2",
+        # "description": "인피니티 워 이후 절반만 살아남은 지구 마지막 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다!  위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!",
+        # "score": "9.51",
+        # "stillCuts": [
+        #     "https://movie-phinf.pstatic.net/20190423_104/1555994321040d2AcJ_JPEG/movie_image.jpg?type=m665_443_2",
+        #     "https://movie-phinf.pstatic.net/20190423_5/1555994321522brgKj_JPEG/movie_image.jpg?type=m665_443_2",
+        #     "https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m665_443_2"
+        # ],
+        # "trailer": "TcMBFSGVi1c"
     }
     """
+    print(daily)
