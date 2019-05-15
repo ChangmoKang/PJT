@@ -7,22 +7,37 @@
             <h3 class="section_header">일일 박스오피스 {{ date }} 기준</h3>
             <div class="movie_strip swiper-container">
                 <div class="swiper-wrapper">
-                    {% for list in daily_lists %}
-                        <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="currentMovie={{list}}">
-                            <img src="{{ list.posterUrl }}">
-                            <div class="movie_poster_bg"></div>
-                            <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>
-                            <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>
-                            <div class="movie_preview_text movie_score">
-                                <div class="star-ratings-css">
-                                    <div class="star-ratings-css-top" style="width: {{list.score | mul:10}}%">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                    <div class="star-ratings-css-bottom">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                </div>
+                    <!--{% for list in daily_lists %}-->
+                    <!--    <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="currentMovie={{list}}">-->
+                    <!--        <img src="{{ list.posterUrl }}">-->
+                    <!--        <div class="movie_poster_bg"></div>-->
+                    <!--        <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>-->
+                    <!--        <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>-->
+                    <!--        <div class="movie_preview_text movie_score">-->
+                    <!--            <div class="star-ratings-css">-->
+                    <!--                <div class="star-ratings-css-top" style="width: {{list.score | mul:10}}%">-->
+                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
+                    <!--                <div class="star-ratings-css-bottom">-->
+                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
+                    <!--            </div>-->
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--{% endfor %}-->
+                    
+                    <div v-for="list in dailyListMovies" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="currentMovie=list">
+                        <img :src="list.posterUrl">
+                        <div class="movie_poster_bg"></div>
+                        <span class="movie_preview_text movie_title">[[ list.movieNm ]]</span>
+                        <span class="movie_preview_text movie_year">[[ list.openDt ]]년</span>
+                        <div class="movie_preview_text movie_score">
+                            <div class="star-ratings-css">
+                                <div class="star-ratings-css-top" :style="{'width': `${list.score*10}%`}">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star-ratings-css-bottom">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
 
                 </div>
             </div>
@@ -32,22 +47,22 @@
             
             <div class="movie_strip swiper-container2">
                 <div class="swiper-wrapper">
-                    {% for list in daily_lists %}
-                        <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">
-                            <img src="{{ list.posterUrl }}">
-                            <div class="movie_poster_bg"></div>
-                            <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>
-                            <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>
-                            <div class="movie_preview_text movie_score">
-                                <div class="star-ratings-css">
-                                    <div class="star-ratings-css-top" style="width: calc({{ list.score }} * 10)%">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                    <div class="star-ratings-css-bottom">
-                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <!--{% for list in daily_lists %}-->
+                    <!--    <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">-->
+                    <!--        <img src="{{ list.posterUrl }}">-->
+                    <!--        <div class="movie_poster_bg"></div>-->
+                    <!--        <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>-->
+                    <!--        <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>-->
+                    <!--        <div class="movie_preview_text movie_score">-->
+                    <!--            <div class="star-ratings-css">-->
+                    <!--                <div class="star-ratings-css-top" style="width: calc({{ list.score }} * 10)%">-->
+                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
+                    <!--                <div class="star-ratings-css-bottom">-->
+                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
+                    <!--            </div>-->
+                    <!--        </div>-->
+                    <!--    </div>-->
+                    <!--{% endfor %}-->
                 </div>
             </div>
             

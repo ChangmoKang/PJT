@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'bootstrap4',
     'mathfilters',
     'django_extensions',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,3 +129,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "accounts.User"
+
+CORS_ORIGIN_ALLOW_ALL = True
