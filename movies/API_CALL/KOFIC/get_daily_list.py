@@ -392,8 +392,8 @@ for i in range(len(daily_lists)):
 # print(stillCut_lists,end="\n")
 
 
-print(list(enumerate(movie_genre_dics, 41)),end='\n')
-print(list(enumerate(movie_nation_dics, 41)),end='\n')
-print(list(enumerate(movie_director_dics, 41)),end='\n')
-print(list(enumerate(movie_actor_dics, 41)),end='\n')
-print(list(enumerate(movie_stillCut_dics, 41)),end='\n')
+# print(list(enumerate(movie_genre_dics, 41)),end='\n')
+# print(list(enumerate(movie_nation_dics, 41)),end='\n')
+# print(list(enumerate(movie_director_dics, 41)),end='\n')
+# print(list(enumerate(movie_actor_dics, 41)),end='\n')
+# print(list(enumerate(movie_stillCut_dics, 41)),end='\n')

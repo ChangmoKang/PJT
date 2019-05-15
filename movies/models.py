@@ -3,16 +3,42 @@ from django.conf import settings
 
 
 class Genre(models.Model):
-    name = models.CharField(default='', max_length=150)
+    genreNm = models.CharField(default='', max_length=150)
+
+
+class Nation(models.Model):
+    nationNm = models.CharField(default='', max_length=150)
+
+
+class Director(models.Model):
+    peopleNm = models.CharField(default='', max_length=150)
+
+
+class Actor(models.Model):
+    peopleNm = models.CharField(default='', max_length=150)
+
+
+class StillCut(models.Model):
+    stillCut = models.CharField(default='', max_length=150)
 
 
 class Movie(models.Model):
-    title = models.CharField(default='', max_length=150)
-    audience = models.IntegerField(default=0)
-    poster_url = models.CharField(default='', max_length=300)
+    movieCd = models.IntegerField(default=0)
+    movieNm = models.CharField(default='', max_length=150)
+    openDt = models.CharField(default='', max_length=150)
+    audiAcc = models.IntegerField(default=0)
+    movieNmEn = models.CharField(default='', max_length=150)
+    showTm = models.IntegerField(default=0)
+    posterUrl = models.CharField(default='', max_length=200)
     description = models.TextField(default='')
-    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='movies')
-    # genre = models.ManyToManyField(Genre, related_name='movies')
+    score = models.FloatField(default=0)
+    trailer = models.CharField(default='', max_length=150)
+    genre = models.ManyToManyField(Genre, related_name='movies')
+    nation = models.ManyToManyField(Nation, related_name='movies')
+    director = models.ManyToManyField(Director, related_name='movies')
+    actor = models.ManyToManyField(Actor, related_name='movies')
+    stillCut = models.ManyToManyField(StillCut, related_name='movies')
+    selected = models.BooleanField(default=False)
 
 
 class Score(models.Model):
