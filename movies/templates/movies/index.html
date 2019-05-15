@@ -7,6 +7,8 @@
             <h3 class="section_header">일일 박스오피스 {{ date }} 기준</h3>
             <div class="movie_strip swiper-container">
                 <div class="swiper-wrapper">
+                    
+                    <!-- DJANGO VIEWS.PY VERSION -->
                     <!--{% for list in daily_lists %}-->
                     <!--    <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="currentMovie={{list}}">-->
                     <!--        <img src="{{ list.posterUrl }}">-->
@@ -24,14 +26,15 @@
                     <!--    </div>-->
                     <!--{% endfor %}-->
                     
-                    <div v-for="list in dailyListMovies" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="currentMovie=list">
-                        <img :src="list.posterUrl">
+                    
+                    <div v-for="movie in allMovies.slice(0, 10)" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="setCurrentMovie(movie)">
+                        <img :src="movie.posterUrl">
                         <div class="movie_poster_bg"></div>
-                        <span class="movie_preview_text movie_title">[[ list.movieNm ]]</span>
-                        <span class="movie_preview_text movie_year">[[ list.openDt ]]년</span>
+                        <span class="movie_preview_text movie_title">[[ movie.movieNm ]]</span>
+                        <span class="movie_preview_text movie_year">[[ movie.openDt ]]년</span>
                         <div class="movie_preview_text movie_score">
                             <div class="star-ratings-css">
-                                <div class="star-ratings-css-top" :style="{'width': `${list.score*10}%`}">
+                                <div class="star-ratings-css-top" :style="{'width': `${movie.score*10}%`}">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                 <div class="star-ratings-css-bottom">
                                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -123,8 +126,8 @@
                         <div class="movie_modal_stills">
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                               <div class="carousel-inner">
-                                <div class="carousel-item" :class="{active: index === 0}" v-for="(item, index) in currentMovie.stillCuts">
-                                  <img :src="item" class="d-block w-100 h-100">
+                                <div class="carousel-item" :class="{active: index === 0}" v-for="(item, index) in currentStills">
+                                  <img :src="item.stillCut" class="d-block w-100 h-100">
                                 </div>
                               </div>
                               <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -144,11 +147,11 @@
                         <div class="movie_modal_text">
                             <div class="movie_modal_text_section">
                                 <p>개요</p>
-                                <p>[[currentMovie.openDt]] 개봉&nbsp;&nbsp;|&nbsp;&nbsp;<span v-for="nation in currentMovie.nations">[[ nation.nationNm ]],</span>&nbsp;&nbsp;|&nbsp;&nbsp;[[currentMovie.showTm]]분</p>
+                                <p>[[currentMovie.openDt]] 개봉&nbsp;&nbsp;|&nbsp;&nbsp;<span v-for="nation in currentNations">[[ nation.nationNm ]],</span>&nbsp;&nbsp;|&nbsp;&nbsp;[[currentMovie.showTm]]분</p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>장르</p>
-                                <p><span v-for="genre in currentMovie.genres">[[ genre.genreNm ]] | </span></p>
+                                <p><span v-for="genre in currentGenres">[[ genre.genreNm ]] | </span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>누적</p>
@@ -156,11 +159,11 @@
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>감독</p>
-                                <p><span v-for="director in currentMovie.directors">[[ director.peopleNm ]],</span></p>
+                                <p><span v-for="director in currentDirectors">[[ director.peopleNm ]],</span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>출연</p>
-                                <p><span v-for="actor in currentMovie.actors">[[ actor.peopleNm ]],</span></p>
+                                <p><span v-for="actor in currentActors">[[ actor.peopleNm ]],</span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>줄거리</p>

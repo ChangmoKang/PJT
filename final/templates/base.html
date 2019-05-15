@@ -637,25 +637,18 @@
                 rating_score: 0,
                 ratingScoreTmp: '',
                 scoreHover: false,
-                dailyListMovies: [],
+                allMovies: [],
                 currentMovie: '',
-                genres: [
-                    {pk: 1, name: "가족", selected: false},
-                    {pk: 2, name: "공포(호러)", selected: false},
-                    {pk: 3, name: "드라마", selected: false},
-                    {pk: 4, name: "멜로/로맨스", selected: false},
-                    {pk: 5, name: "미스터리", selected: false},
-                    {pk: 6, name: "사극", selected: false},
-                    {pk: 7, name: "스릴러", selected: false},
-                    {pk: 8, name: "액션", selected: false},
-                    {pk: 9, name: "어드벤처", selected: false},
-                    {pk: 10, name: "판타지", selected: false},
-                    {pk: 11, name: "코미디", selected: false},
-                    {pk: 12, name: "애니메이션", selected: false},
-                    {pk: 13, name: "범죄", selected: false},
-                    {pk: 14, name: "SF", selected: false},
-                    {pk: 15, name: "뮤지컬", selected: false}
-                ],
+                allGenres: [],
+                currentGenres: [],
+                allNations: [],
+                currentNations: [],
+                allDirectors: [],
+                currentDirectors: [],
+                allActors: [],
+                currentActors: [],
+                allStills: [],
+                currentStills: [],
             },
             methods: {
                 scoreHoverOver(num) {
@@ -673,12 +666,59 @@
                         genre.selected = true;
                     }
                 },
-                getAllData(URL) {
-                    const URL = 'https://final-pjt-dkssudckdah.c9users.io/movies/get/'
-                    axios.get(URL)
+                getAllMovies() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/')
                         .then((res) => {
-                            this.dailyListMovies = res.data
+                            this.allMovies = res.data
                         })
+                },
+                getAllGenres() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/genres/')
+                        .then((res) => {
+                            this.allGenres = res.data
+                        })
+                },
+                getAllNations() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/nations/')
+                        .then((res) => {
+                            this.allNations = res.data
+                        })
+                },
+                getAllDirectors() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/directors/')
+                        .then((res) => {
+                            this.allDirectors = res.data
+                        })
+                },
+                getAllStills() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/stillCuts/')
+                        .then((res) => {
+                            this.allStills = res.data
+                        })
+                },
+                getAllActors() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/actors/')
+                        .then((res) => {
+                            this.allActors = res.data
+                        })
+                },
+                setCurrentMovie(movie) {
+                    this.currentMovie = movie;
+                    this.currentGenres = this.allGenres.filter((item) => {
+                        return movie.genre.includes(item.id)
+                    });
+                    this.currentNations = this.allNations.filter((item) => {
+                        return movie.nation.includes(item.id)
+                    });
+                    this.currentDirectors = this.allDirectors.filter((item) => {
+                        return movie.director.includes(item.id)
+                    });
+                    this.currentActors = this.allActors.filter((item) => {
+                        return movie.actor.includes(item.id)
+                    });
+                    this.currentStills = this.allStills.filter((item) => {
+                        return movie.stillCut.includes(item.id)
+                    });
                 }
             },
             filters: {
@@ -690,7 +730,12 @@
                 },
             },
             created: function () {
-                this.getAllData()
+                this.getAllMovies();
+                this.getAllGenres();
+                this.getAllNations();
+                this.getAllDirectors();
+                this.getAllActors();
+                this.getAllStills();
             }
         });
         
