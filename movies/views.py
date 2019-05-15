@@ -6,8 +6,6 @@ from .forms import ScoreModelForm
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-import json
-
 from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 
 
