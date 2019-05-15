@@ -10,6 +10,10 @@ from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 
 
 # Create your views here.
+
+def intro(request):
+    return render(request, 'movies/intro.html')
+
 def movie_index(request):
     return render(request, 'movies/index.html', {
         'movies': Movie.objects.all(),
