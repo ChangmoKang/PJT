@@ -110,7 +110,7 @@ def score_create_read(request,movie_id):
         
 
 @api_view(['PUT', 'DELETE'])
-def score_update_delete(request, movie_id, score_id):
+def score_update_delete(request, score_id):
     score = get_object_or_404(Score, pk=score_id)
     if request.method == 'PUT':
         serializer = ScoreSerializer(score, data=request.data)
