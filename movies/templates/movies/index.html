@@ -196,7 +196,7 @@
                                     [[ review.score ]]점
                                 </div>
                                 <div class="reviewComment">[[ review.comment ]] - [[ review.user.username ]]
-                                    <span class="editdelbtn" v-if="review.user.id == {{userID}}">삭제</span>
+                                    <span class="editdelbtn" v-if="review.user.id == {{userID}}" @click="deleteScoreReview(review.id)">삭제</span>
                                 </div>
                         
                             </div>
