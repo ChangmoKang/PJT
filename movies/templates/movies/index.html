@@ -169,10 +169,6 @@
                                 <p>줄거리</p>
                                 <p>[[currentMovie.description]]</p>
                             </div>
-                            
-                            
-                            
-                            
                         </div>
                     </div>
                     <div class="movie_modal_right">
@@ -205,8 +201,8 @@
                                 <span v-if="scoreHover">[[ ratingScoreTmp ]]점</span>
                                 <span v-else>[[ rating_score ]]점</span>
                             </div>
-                            <input type="text" class="score_input">
-                            <button class="btn btn-sm btn-crimson score_btn">등록</button>
+                            <input type="text" class="score_input" v-model="ratingScoreContent">
+                            <button class="btn btn-sm btn-crimson score_btn" @click="createScoreReview()">등록</button>
                         </div>
 
                     </div>

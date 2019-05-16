@@ -665,6 +665,7 @@
             data: {
                 rating_score: 0,
                 ratingScoreTmp: '',
+                ratingScoreContent: '',
                 scoreHover: false,
                 allMovies: [],
                 currentMovie: '',
@@ -762,7 +763,14 @@
                         return movie.stillCut.includes(item.id)
                     });
                 },
-                
+                createScoreReview() {
+                    axios.post(`https://final-prj-whitejcme.c9users.io/movies/1/scores/create/`, {
+                        comment: this.ratingScoreContent,
+                        score: this.rating_score,
+                        movie: 1,
+                        user: 1
+                    })
+                },
             },
             filters: {
                 getYear(value) {
