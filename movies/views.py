@@ -31,6 +31,13 @@ def movie_index(request):
         # 'date': YESTERDAY,
         # 'daily_lists': daily_lists,
     })
+
+def movie_suggestions(request):
+    return render(request, 'movies/suggestions.html')
+    
+
+def movie_watchlist(request):
+    return render(request, 'movies/watchlist.html')
     
 
 @api_view(['GET'])
@@ -87,10 +94,6 @@ def score_delete(request, movie_id, score_id):
     score = get_object_or_404(Score, pk=score_id)
     score.delete()
     return redirect('movies:movie_index')
-
-
-def movie_suggestions(request):
-    return render(request, 'movies/suggestions.html')
 
 
 @api_view(['GET'])
