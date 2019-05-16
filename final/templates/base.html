@@ -451,6 +451,31 @@
         }
 
 
+        /* * * * * * * * *  SHOW SCORES/REVIEW (MODAL) * * * * * * * * */
+        .showReviews {
+            margin-top: 20px;
+        }
+        .reviewContainer {
+            font-size: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .reviewStars {
+            width: 125px;
+            display: inline-block;
+        }
+        .reviewContainer .star-ratings-css {
+            font-size: 15px;
+            width: 76px;
+            display: inline-block;
+        }
+        .reviewComment {
+            width: calc(100% - 125px);
+            float: right;
+        }
+
+
+
 
         /* * * * * * * * *  RECENT REVIEWS * * * * * * * * */
         
@@ -574,23 +599,27 @@
         .suggResults {
             width: 100%;
             height: 300px;
-            border: 1px solid royalblue;
         }
         
         .movieCardCont {
             width: 100%;
             height: 280px;
-            border: 1px solid pink;
             position: relative;
+            perspective: 500px;
         }
         .movieCard {
             width: 200px;
             height: calc(100% - 20px);
-            border: 1px solid cyan;
             margin-bottom: 20px;
             position: absolute;
             top: 0; left: 50%;
             transform: translate(-50%);
+            transition: all 5s;
+            box-shadow: 2px 2px 5px #181818;
+        }
+        
+        .movieCard:hover {
+            transform: translate(-50%) rotateY(180deg);
         }
         
         .movieCardPoster {
@@ -598,6 +627,10 @@
             height: 100%;
             position: absolute;
             top: 0; left: 0;
+        }
+        
+        .suggResults .movie_preview_text {
+            font-size: 14px;
         }
         
         /* * * * * * * * *  FORMS * * * * * * * * */
@@ -775,7 +808,24 @@
                         comment: this.ratingScoreContent,
                         score: this.rating_score,
                         movieCd: this.currentMovie.movieCd,
+                    }).then((res) => {
+                        this.allScores.push({
+                            comment: this.ratingScoreContent,
+                            score: this.rating_score,
+                            movieCd: this.currentMovie.movieCd,
+                        })
+                        this.rating_score = 0;
+                        this.ratingScoreContent = '';
                     })
+                },
+                getMovieTitleFromCd(movieCd) {
+                    let movieTitle = '';
+                    this.allMovies.forEach((movie) => {
+                        if (movie.movieCd == movieCd) {
+                            movieTitle = movie.movieNm;
+                        }
+                    });
+                    return movieTitle
                 },
             },
             filters: {

@@ -50,22 +50,20 @@
             
             <div class="movie_strip swiper-container2">
                 <div class="swiper-wrapper">
-                    <!--{% for list in daily_lists %}-->
-                    <!--    <div class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter">-->
-                    <!--        <img src="{{ list.posterUrl }}">-->
-                    <!--        <div class="movie_poster_bg"></div>-->
-                    <!--        <span class="movie_preview_text movie_title">{{ list.movieNm }}</span>-->
-                    <!--        <span class="movie_preview_text movie_year">{{ list.openDt | slice:"0:4" }}년</span>-->
-                    <!--        <div class="movie_preview_text movie_score">-->
-                    <!--            <div class="star-ratings-css">-->
-                    <!--                <div class="star-ratings-css-top" style="width: calc({{ list.score }} * 10)%">-->
-                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
-                    <!--                <div class="star-ratings-css-bottom">-->
-                    <!--                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>-->
-                    <!--            </div>-->
-                    <!--        </div>-->
-                    <!--    </div>-->
-                    <!--{% endfor %}-->
+                    <div v-for="movie in allMovies.slice(10, )" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="setCurrentMovie(movie)">
+                        <img :src="movie.posterUrl">
+                        <div class="movie_poster_bg"></div>
+                        <span class="movie_preview_text movie_title">[[ movie.movieNm ]]</span>
+                        <span class="movie_preview_text movie_year">[[ movie.openDt | getYear ]]년</span>
+                        <div class="movie_preview_text movie_score">
+                            <div class="star-ratings-css">
+                                <div class="star-ratings-css-top" :style="{'width': `${movie.score*10}%`}">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                <div class="star-ratings-css-bottom">
+                                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -76,21 +74,21 @@
             <!-- Bootstrap Grid System-->
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="review in allScores.reverse().slice(0, 5)">
                         <div class="reviewCard">
                             <div class="reviewStars">
                                 <div class="star-ratings-css">
-                                    <div class="star-ratings-css-top" style="width: 80%">
+                                    <div class="star-ratings-css-top" :style="{'width': `${review.score*10}%`}">
                                         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                     <div class="star-ratings-css-bottom">
                                         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                 </div>
                             </div>
                             <div class="reviewContent">
-                                어벤져스 엔드게임 추천합니다. 어벤져스 엔드게임 추천합니다. 어벤져스 엔드게임 추천합니다. 어벤져스 엔드게임 추천합니다.
+                                [[ review.comment ]]
                             </div>
                             <div class="reviewMovieTitle">
-                                - 어벤져스: 엔드게임
+                                - [[ getMovieTitleFromCd(review.movieCd) ]]
                             </div>
                         </div>
                     </div>
@@ -206,7 +204,18 @@
                         </div>
                         
                         <div class="showReviews">
-                            <p v-for="review in allScores" v-if="review.movieCd == currentMovie.movieCd">[[ review.comment ]]</p>
+                            <div class="reviewContainer" v-for="review in allScores" v-if="review.movieCd == currentMovie.movieCd">
+                                <div class="reviewStars">
+                                    <div class="star-ratings-css">
+                                        <div class="star-ratings-css-top" :style="{'width': `${review.score*10}%`}">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star-ratings-css-bottom">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                    [[ review.score ]]점
+                                </div>
+                                <div class="reviewComment">[[ review.comment ]]</div>
+                            </div>
                         </div>
 
                     </div>

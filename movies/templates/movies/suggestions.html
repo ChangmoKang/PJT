@@ -123,10 +123,6 @@
                                 <p>줄거리</p>
                                 <p>[[currentMovie.description]]</p>
                             </div>
-                            
-                            
-                            
-                            
                         </div>
                     </div>
                     <div class="movie_modal_right">
@@ -159,8 +155,23 @@
                                 <span v-if="scoreHover">[[ ratingScoreTmp ]]점</span>
                                 <span v-else>[[ rating_score ]]점</span>
                             </div>
-                            <input type="text" class="score_input">
-                            <button class="btn btn-sm btn-crimson score_btn">등록</button>
+                            <input type="text" class="score_input" v-model="ratingScoreContent">
+                            <button class="btn btn-sm btn-crimson score_btn" @click="createScoreReview()">등록</button>
+                        </div>
+                        
+                        <div class="showReviews">
+                            <div class="reviewContainer" v-for="review in allScores" v-if="review.movieCd == currentMovie.movieCd">
+                                <div class="reviewStars">
+                                    <div class="star-ratings-css">
+                                        <div class="star-ratings-css-top" :style="{'width': `${review.score*10}%`}">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                        <div class="star-ratings-css-bottom">
+                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    </div>
+                                    [[ review.score ]]점
+                                </div>
+                                <div class="reviewComment">[[ review.comment ]]</div>
+                            </div>
                         </div>
 
                     </div>
