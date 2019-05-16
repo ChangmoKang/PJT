@@ -123,7 +123,7 @@ def score_create_read(request):
             return Response(msg_dict)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
-        scores = movie.scores.all()
+        scores = Score.objects.all()
         serializer = ScoreSerializer(scores, many=True)
         return Response(serializer.data)
         

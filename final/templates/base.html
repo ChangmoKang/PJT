@@ -681,6 +681,7 @@
                 currentStills: [],
                 selectedGenres: [],
                 suggNationOpt: 'all',
+                allScores: [],
             },
             methods: {
                 scoreHoverOver(num) {
@@ -763,6 +764,12 @@
                         return movie.stillCut.includes(item.id)
                     });
                 },
+                getAllScores() {
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/scores/')
+                        .then((res) => {
+                            this.allScores = res.data
+                        });
+                },
                 createScoreReview() {
                     axios.post('https://final-pjt-dkssudckdah.c9users.io/movies/scores/', {
                         comment: this.ratingScoreContent,
@@ -807,6 +814,7 @@
                 this.getAllDirectors();
                 this.getAllActors();
                 this.getAllStills();
+                this.getAllScores();
             }
         });
         

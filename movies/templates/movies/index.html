@@ -204,6 +204,10 @@
                             <input type="text" class="score_input" v-model="ratingScoreContent">
                             <button class="btn btn-sm btn-crimson score_btn" @click="createScoreReview()">등록</button>
                         </div>
+                        
+                        <div class="showReviews">
+                            <p v-for="review in allScores" v-if="review.movieCd == currentMovie.movieCd">[[ review.comment ]]</p>
+                        </div>
 
                     </div>
                 </div>
