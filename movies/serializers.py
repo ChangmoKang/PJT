@@ -51,10 +51,6 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = ['id', 'watchUsers', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
 
 
-
-        
-
-
 class ScoreSerializer(serializers.ModelSerializer):
     movie = MovieSerializer(read_only=True)
     user = UserSerializer(read_only=True)

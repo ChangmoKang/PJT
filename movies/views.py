@@ -13,6 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer
 
+from django.http import HttpResponse
+
 # from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 # from .API_CALL.KOFIC.get_data import a
 # from .API_CALL.KOFIC.organize import a
@@ -133,3 +135,16 @@ def score_update_delete(request, score_id):
         score.delete()
         msg_dict = { "message": "삭제되었습니다." }
         return Response(msg_dict)
+        
+
+def watch_get(request,movie_id):
+    # 1. like를 추가할 포스트를 가져옴.
+    movie = get_object_or_404(Movie, pk=movie_id)
+    # 2. 만약 유저가 해당 post를 이미 like 했다면, like를 제거하고. 아니면, like를 추가한다.
+    if request.user in movie.watchUsers.all():
+        movie.watchUsers.remove(request.user)
+    else:
+        movie.watchUsers.add(request.user)
+    return HttpResponse('')
+    # msg_dict = { "message": "수정되었습니다." }
+    # return Response(msg_dict)

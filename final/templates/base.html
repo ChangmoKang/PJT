@@ -861,6 +861,7 @@
                 allScores: [],
                 currentScores: [],
                 // userWatchStr: '',
+                userWatchlist: [],
                 currentMovieInWatch: false,
             },
             methods: {
@@ -881,21 +882,30 @@
                         this.selectedGenres.push(genre.genreNm);
                     }
                 },
-                getAllMovies() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/')
-                        .then((res) => {
-                            this.allMovies = res.data
-                        })
+                // getAllMovies() {
+                //     axios.get('https://final-prj-whitejcme.c9users.io/movies/get/')
+                //         .then((res) => {
+                //             this.allMovies = res.data
+                //         })
+                // },
+                async getAllMovies() {
+                    const tmp = await axios.get('https://final-prj-whitejcme.c9users.io/movies/get/')
+                    this.allMovies = tmp.data
+                    this.userWatchlist = this.allMovies.filter((movie) => {
+                        return movie.watchUsers.some((user) => {
+                            return user === "{{user}}"
+                        });
+                    });
                 },
                 getAllGenres() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/genres/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/genres/')
                         .then((res) => {
                             this.allGenres = res.data
                         })
                 },
                 async setCurrentMovie(movie) {
                     this.currentMovie = movie;
-                    let res_score = await axios.get(`https://final-pjt-dkssudckdah.c9users.io/movies/${movie.id}/scores/`)
+                    let res_score = await axios.get(`https://final-prj-whitejcme.c9users.io/movies/${movie.id}/scores/`)
                     this.currentScores = res_score.data;
                     
                     if (movie.watchUsers.includes("{{user}}")) {
@@ -903,14 +913,27 @@
                     }
 
                 },
+                // setUserWatchlist() {
+                //     this.getAllMovies()
+                //     // this.userWatchlist = this.allMovies.forEach((movie) => {
+                //     //     return movie.watchUsers.some((user) => {
+                //     //         return user === "{{user}}"
+                //     //     });
+                //     // })
+                //     console.log("{{user}}")
+                    
+                //     this.allMovies.forEach((movie) => {
+                //         console.log(movie)
+                //     })
+                // },
                 // getUserWatchlist() {
-                //     axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/{{user.id}}/watches/')
+                //     axios.get('https://final-prj-whitejcme.c9users.io/movies/get/{{user.id}}/watches/')
                 //         .then((res) => {
                 //             this.userWatchStr = res.data;
                 //         });
                 // },
                 getAllScores() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/scores/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/scores/')
                         .then((res) => {
                             this.allScores = res.data
                         });
@@ -918,7 +941,7 @@
                 createScoreReview() {
                     axios.defaults.xsrfCookieName = 'csrftoken'
                     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-                    axios.post(`https://final-pjt-dkssudckdah.c9users.io/movies/${this.currentMovie.id}/scores/`, {
+                    axios.post(`https://final-prj-whitejcme.c9users.io/movies/${this.currentMovie.id}/scores/`, {
                         comment: this.ratingScoreContent,
                         score: this.rating_score,
                     }).then((res) => {
@@ -931,24 +954,26 @@
                     })
                 },
                 deleteScoreReview(id) {
-                    axios.delete(`https://final-pjt-dkssudckdah.c9users.io/movies/scores/${id}/`)
+                    axios.delete(`https://final-prj-whitejcme.c9users.io/movies/scores/${id}/`)
                         .then((res) => {
                             this.currentScores = arrRemoveByID(this.currentScores, id)
                         });
                 },
-                // async addToWatch(movieID) {
-                //     this.userWatchStr = JSON.stringify(JSON.parse(this.userWatchStr).push(movieID));
-                //     // axios update request
+                async addToWatch(movieID) {
+                    axios.get(`https://final-prj-whitejcme.c9users.io/movies/get/${movieID}/watches/`)
+                    // this.userWatchStr = JSON.stringify(JSON.parse(this.userWatchStr).push(movieID));
+                    // axios update request
                     
-                //     this.currentMovieInWatch = true;
-                // },
-                // async removeFromWatch(movieID) {
-                //     let tmpArr = JSON.parse(this.userWatchStr);
-                //     this.userWatchStr = JSON.stringify(arrRemove(tmpArr, movieID));
-                //     // axios update request
+                    this.currentMovieInWatch = true;
+                },
+                async removeFromWatch(movieID) {
+                    axios.get(`https://final-prj-whitejcme.c9users.io/movies/get/${movieID}/watches/`)
+                    // let tmpArr = JSON.parse(this.userWatchStr);
+                    // this.userWatchStr = JSON.stringify(arrRemove(tmpArr, movieID));
+                    // axios update request
                     
-                //     this.currentMovieInWatch = false;
-                // }
+                    this.currentMovieInWatch = false;
+                }
             },
             filters: {
                 getYear(value) {
@@ -984,6 +1009,7 @@
                 this.getAllGenres();
                 this.getAllScores();
                 // this.getUserWatchlist();
+                // this.setUserWatchlist();
             }
         });
         
