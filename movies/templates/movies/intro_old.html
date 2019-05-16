@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Dokdo" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <!-- LINK SWIPER'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- VUE.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+    <title>Intro</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Dokdo', cursive;
+        }
+
+        #wrap {
+            width: 100%;
+            height: 100vh;
+            /* background: linear-gradient(-45deg, #2F4454, #2E151B, #376E6F, #1C3334); */
+            /* background: linear-gradient(-45deg, #314455, #644E5B, #9E5A63, #C96567); */
+            background: linear-gradient(-45deg, #33266E, #111111, #542F34, #A6607C);
+            background-size: 400% 400%;
+            -webkit-animation: Gradient 10s ease infinite;
+            -moz-animation: Gradient 10s ease infinite;
+            animation: Gradient 10s ease infinite;
+            position: relative;
+        }
+
+        @-webkit-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        @-moz-keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        @keyframes Gradient {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        .mainContainer {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .titleLink, .titleLink:hover {
+            text-decoration: none;
+        }
+
+        .title {
+            color: #F6F6F8;
+            font-size: 80px;
+            text-align: center;
+            position: relative;
+            top: 0px;
+            animation: bobbing 2s infinite alternate;
+        }
+        @keyframes bobbing {
+            0% {top: 0px;}
+            100% {top: -10px;}
+        }
+
+        .movieSwiper {
+            width: 500px;
+            height: 300px;
+            position: relative;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .gallery-top {
+            height: 80%;
+            width: 100%;
+        }
+
+        .gallery-thumbs {
+            height: 20%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .gallery-thumbs .swiper-slide {
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        .gallery-thumbs .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <div class="mainContainer">
+            <a href="{% url 'movies:movie_index' %}" class="titleLink">
+                <div class="title">
+                KCM의 흑백영화
+                </div>
+            </a>
+            <div class="movieSwiper">
+                <!-- Swiper -->
+                <div class="swiper-container gallery-top">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190404_182/15543412133071OW9Q_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190320_26/1553042915957YHWwu_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190423_232/1555983349432eQ206_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180601_178/1527819660172npTUd_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181004_215/1538616301447aoavz_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180711_58/1531268543309zJCjp_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180709_45/15311173394183Xlc1_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180712_110/1531356633644w5ccl_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180808_119/1533689549510zjOnW_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180921_274/15374908871099h7BJ_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180830_98/15356083300330ud9w_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181024_139/1540344547049QADsG_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181025_59/1540428871441hU06M_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181001_87/15383579971625GhiV_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180927_81/1538012492015lybaS_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181212_166/1544593180201mMtLA_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190116_194/15476009988614q3pJ_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190128_46/15486393185373CbbA_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181218_221/1545097631434zdzwE_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="swiper-container gallery-thumbs">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190423_41/1555994321935RJdum_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190404_182/15543412133071OW9Q_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190320_26/1553042915957YHWwu_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190423_232/1555983349432eQ206_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180601_178/1527819660172npTUd_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181004_215/1538616301447aoavz_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180711_58/1531268543309zJCjp_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180709_45/15311173394183Xlc1_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180712_110/1531356633644w5ccl_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180808_119/1533689549510zjOnW_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180921_274/15374908871099h7BJ_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180830_98/15356083300330ud9w_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181024_139/1540344547049QADsG_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181025_59/1540428871441hU06M_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181001_87/15383579971625GhiV_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20180927_81/1538012492015lybaS_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181212_166/1544593180201mMtLA_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190116_194/15476009988614q3pJ_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20190128_46/15486393185373CbbA_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                        <div class="swiper-slide"
+                            style="background-image:url(https://movie-phinf.pstatic.net/20181218_221/1545097631434zdzwE_JPEG/movie_image.jpg?type=m427_320_2)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            loop: true,
+            freeMode: true,
+            loopedSlides: 5, //looped slides should be the same
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        });
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 10,
+            loop: true,
+            loopedSlides: 5, //looped slides should be the same
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            thumbs: {
+                swiper: galleryThumbs,
+            },
+        });
+    </script>
+</body>
+
+</html>
