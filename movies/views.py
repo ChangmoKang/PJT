@@ -44,35 +44,7 @@ def genre_get(request):
     genres = Genre.objects.all()
     serializer = GenreSerializer(genres, many=True)
     return Response(serializer.data)  
-    
-    
-@api_view(['GET'])
-def nation_get(request):
-    nations = Nation.objects.all()
-    serializer = NationSerializer(nations, many=True)
-    return Response(serializer.data)  
-    
-    
-@api_view(['GET'])
-def director_get(request):
-    directors = Director.objects.all()
-    serializer = DirectorSerializer(directors, many=True)
-    return Response(serializer.data)  
-    
-    
-@api_view(['GET'])
-def actor_get(request):
-    actors = Actor.objects.all()
-    serializer = ActorSerializer(actors, many=True)
-    return Response(serializer.data)  
-    
-    
-@api_view(['GET'])
-def stillCut_get(request):
-    stillCuts = StillCut.objects.all()
-    serializer = StillCutSerializer(stillCuts, many=True)
-    return Response(serializer.data)  
-  
+
 
 @login_required
 @require_POST
@@ -113,17 +85,25 @@ def movie_suggestions(request):
     return render(request, 'movies/suggestions.html')
 
 
+@api_view(['GET'])
+def score_read_only(request):
+    scores = Score.objects.all()
+    serializer = ScoreSerializer(scores, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['GET', 'POST'])
-def score_create_read(request):
+def score_create_read(request,movie_id):
+    movie = get_object_or_404(Movie,pk=movie_id)
     if request.method == 'POST':
         serializer = ScoreSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
+        if serializer.is_valid():
+            serializer.save(movie=movie, user=request.user)
             msg_dict = { "message": "작성되었습니다." }
             return Response(msg_dict)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
-        scores = Score.objects.all()
+        scores = movie.scores.all()
         serializer = ScoreSerializer(scores, many=True)
         return Response(serializer.data)
         

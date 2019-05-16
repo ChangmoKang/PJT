@@ -80,8 +80,8 @@
                         <div class="movie_modal_stills">
                             <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                               <div class="carousel-inner">
-                                <div class="carousel-item" :class="{active: index === 0}" v-for="(item, index) in currentStills">
-                                  <img :src="item.stillCut" class="d-block w-100 h-100">
+                                <div class="carousel-item" :class="{active: index === 0}" v-for="(item, index) in currentMovie.stillCut">
+                                  <img :src="item" class="d-block w-100 h-100">
                                 </div>
                               </div>
                               <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -101,11 +101,11 @@
                         <div class="movie_modal_text">
                             <div class="movie_modal_text_section">
                                 <p>개요</p>
-                                <p>[[currentMovie.openDt]] 개봉&nbsp;&nbsp;|&nbsp;&nbsp;<span v-for="nation in currentNations">[[ nation.nationNm ]],</span>&nbsp;&nbsp;|&nbsp;&nbsp;[[currentMovie.showTm]]분</p>
+                                <p>[[currentMovie.openDt]] 개봉&nbsp;&nbsp;|&nbsp;&nbsp;<span v-for="nation in currentMovie.nation">[[ nation ]],</span>&nbsp;&nbsp;|&nbsp;&nbsp;[[currentMovie.showTm]]분</p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>장르</p>
-                                <p><span v-for="genre in currentGenres">[[ genre.genreNm ]] | </span></p>
+                                <p><span v-for="genre in currentMovie.genre">[[ genre ]] | </span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>누적</p>
@@ -113,11 +113,11 @@
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>감독</p>
-                                <p><span v-for="director in currentDirectors">[[ director.peopleNm ]],</span></p>
+                                <p><span v-for="director in currentMovie.director">[[ director ]],</span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>출연</p>
-                                <p><span v-for="actor in currentActors">[[ actor.peopleNm ]],</span></p>
+                                <p><span v-for="actor in currentMovie.actor">[[ actor ]],</span></p>
                             </div>
                             <div class="movie_modal_text_section">
                                 <p>줄거리</p>
@@ -160,7 +160,7 @@
                         </div>
                         
                         <div class="showReviews">
-                            <div class="reviewContainer" v-for="review in allScores" v-if="review.movieCd == currentMovie.movieCd">
+                            <div class="reviewContainer" v-for="review in currentScores">
                                 <div class="reviewStars">
                                     <div class="star-ratings-css">
                                         <div class="star-ratings-css-top" :style="{'width': `${review.score*10}%`}">

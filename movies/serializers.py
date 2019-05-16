@@ -33,24 +33,20 @@ class StillCutSerializer(serializers.ModelSerializer):
         
 
 class MovieSerializer(serializers.ModelSerializer):
-    # genre = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all(), many=True)
-    # nation = serializers.PrimaryKeyRelatedField(queryset=Nation.objects.all(), many=True)
-    # director = serializers.PrimaryKeyRelatedField(queryset=Director.objects.all(), many=True)
-    # actor = serializers.PrimaryKeyRelatedField(queryset=Actor.objects.all(), many=True)
-    # stillCut = serializers.PrimaryKeyRelatedField(queryset=StillCut.objects.all(), many=True)
+    genre = serializers.StringRelatedField(many=True)
+    nation = serializers.StringRelatedField(many=True)
+    director = serializers.StringRelatedField(many=True)
+    actor = serializers.StringRelatedField(many=True)
+    stillCut = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Movie
-        fields = ['movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
+        fields = ['id', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
 
 
 class ScoreSerializer(serializers.ModelSerializer):
+    movie = MovieSerializer(read_only=True)
+
     class Meta:
         model = Score
-        fields = ['comment', 'score', 'movieCd',]
-
-
-# class ScoreSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Score
-#         fields = ['comment', 'score', 'movie', 'user']
+        fields = ['comment', 'score', 'movie']
