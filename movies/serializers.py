@@ -41,7 +41,7 @@ class MovieSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Movie
-        fields = ['movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
+        fields = ['id', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
 
 
 class ScoreSerializer(serializers.ModelSerializer):
