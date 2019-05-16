@@ -705,6 +705,12 @@
             });
         };
         
+        const arrRemoveByID = (arr, id) => {
+            return arr.filter(function(el) {
+                return el.id != id
+            });
+        }
+        
         
         const app = new Vue({
             delimiters: ['[[', ']]'],
@@ -780,6 +786,9 @@
                 },
                 deleteScoreReview(id) {
                     axios.delete(`https://final-pjt-dkssudckdah.c9users.io/movies/scores/${id}/`)
+                        .then((res) => {
+                            this.currentScores = arrRemoveByID(this.currentScores, id)
+                        });
                 }
             },
             filters: {
