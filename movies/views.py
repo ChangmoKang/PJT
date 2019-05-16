@@ -113,10 +113,8 @@ def movie_suggestions(request):
     return render(request, 'movies/suggestions.html')
 
 
-""" REST API
 @api_view(['GET', 'POST'])
-def score_create_read(request, movie_id):
-    movie = get_object_or_404(Movie, pk=movie_id)
+def score_create_read(request):
     if request.method == 'POST':
         serializer = ScoreSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -129,7 +127,6 @@ def score_create_read(request, movie_id):
         serializer = ScoreSerializer(scores, many=True)
         return Response(serializer.data)
         
-
 
 @api_view(['PUT', 'DELETE'])
 def score_update_delete(request, movie_id, score_id):
@@ -145,4 +142,3 @@ def score_update_delete(request, movie_id, score_id):
         score.delete()
         msg_dict = { "message": "삭제되었습니다." }
         return Response(msg_dict)
-"""

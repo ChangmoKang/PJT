@@ -49,5 +49,6 @@ class Movie(models.Model):
 class Score(models.Model):
     comment = models.TextField(default='')
     score = models.IntegerField(default=0)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='scores')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='scores')
+    movieCd = models.IntegerField(default=0)
+    # movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='scores')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='scores')

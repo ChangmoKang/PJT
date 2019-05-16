@@ -47,12 +47,10 @@ class MovieSerializer(serializers.ModelSerializer):
 class ScoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Score
-        fields = ['comment', 'score', 'movie', 'user']
-        
-        
-# class GenreDetailSerializer(serializers.ModelSerializer):
-#     movies = MovieSerializer('movies', many=True, read_only=True)
-    
+        fields = ['comment', 'score', 'movieCd',]
+
+
+# class ScoreSerializer(serializers.ModelSerializer):
 #     class Meta:
-#         model = Genre
-#         fields = ['id', 'movies']
+#         model = Score
+#         fields = ['comment', 'score', 'movie', 'user']

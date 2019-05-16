@@ -764,11 +764,10 @@
                     });
                 },
                 createScoreReview() {
-                    axios.post(`https://final-prj-whitejcme.c9users.io/movies/1/scores/create/`, {
+                    axios.post('https://final-pjt-dkssudckdah.c9users.io/movies/scores/', {
                         comment: this.ratingScoreContent,
                         score: this.rating_score,
-                        movie: 1,
-                        user: 1
+                        movieCd: this.currentMovie.movieCd,
                     })
                 },
             },
