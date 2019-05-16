@@ -57,6 +57,8 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="review in allScores.reverse().slice(0, 5)">
                         <div class="reviewCard">
+                            <div class="reviewContent">[[ review.movie.movieNm ]]</div>
+                            
                             <div class="reviewStars">
                                 <div class="star-ratings-css">
                                     <div class="star-ratings-css-top" :style="{'width': `${review.score*10}%`}">
@@ -69,7 +71,7 @@
                                 [[ review.comment ]]
                             </div>
                             <div class="reviewMovieTitle">
-                                - [[ review.movie.movieNm ]]
+                                - [[ review.user.username ]]
                             </div>
                         </div>
                     </div>

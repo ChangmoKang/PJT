@@ -12,7 +12,7 @@ urlpatterns = [
     
     path('get/', views.movie_get, name='movie_get'),
     path('get/genres/', views.genre_get, name='genre_get'),
-    path('get/<int:user_id>/watches/', views.watch_get, name='watch_get'),
+    # path('get/<int:user_id>/watches/', views.watch_get, name='watch_get'),
 
     # path('<int:movie_id>/scores/create/', views.score_create, name='score_create'),
     # path('<int:movie_id>/scores/<int:score_id>/update/', views.score_update, name='score_update'),

@@ -33,28 +33,26 @@ class StillCutSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'username']
+
 class MovieSerializer(serializers.ModelSerializer):
     genre = serializers.StringRelatedField(many=True)
     nation = serializers.StringRelatedField(many=True)
     director = serializers.StringRelatedField(many=True)
     actor = serializers.StringRelatedField(many=True)
     stillCut = serializers.StringRelatedField(many=True)
+    watchUsers = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Movie
-        fields = ['id', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
+        fields = ['id', 'watchUsers', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ['id', 'username', 'watch']
+
         
-        
-class UserWatchSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ['id', 'watch']
 
 
 class ScoreSerializer(serializers.ModelSerializer):

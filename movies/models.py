@@ -52,6 +52,7 @@ class Movie(models.Model):
     actor = models.ManyToManyField(Actor, related_name='movies')
     stillCut = models.ManyToManyField(StillCut, related_name='movies')
     selected = models.BooleanField(default=False)
+    watchUsers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="watchlists", blank=True)
     
     def __str__(self):
         return self.movieNm

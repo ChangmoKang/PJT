@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer, UserWatchSerializer
+from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer
 
 # from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
 # from .API_CALL.KOFIC.get_data import a
@@ -54,11 +54,11 @@ def genre_get(request):
     return Response(serializer.data)  
 
 
-@api_view(['GET'])
-def watch_get(request, user_id):
-    user = get_object_or_404(get_user_model(), pk=user_id)
-    serializer = UserWatchSerializer(user, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def watch_get(request, user_id):
+#     user = get_object_or_404(get_user_model(), pk=user_id)
+#     serializer = UserWatchSerializer(user, many=True)
+#     return Response(serializer.data)
 
 
 @login_required
