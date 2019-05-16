@@ -49,6 +49,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['id', 'username', 'watch']
+        
+        
+class UserWatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'watch']
 
 
 class ScoreSerializer(serializers.ModelSerializer):
