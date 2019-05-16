@@ -576,19 +576,25 @@
             height: 300px;
             border: 1px solid royalblue;
         }
+        
         .movieCardCont {
+            width: 100%;
+            height: 280px;
+            border: 1px solid pink;
             position: relative;
         }
         .movieCard {
-            border: 1px solid pink;
-            width: 100%;
-            height: 250px;
-            padding-bottom: 20px;
+            width: 200px;
+            height: calc(100% - 20px);
+            border: 1px solid cyan;
+            margin-bottom: 20px;
             position: absolute;
             top: 0; left: 50%;
             transform: translate(-50%);
         }
+        
         .movieCardPoster {
+            width: 100%;
             height: 100%;
             position: absolute;
             top: 0; left: 0;
@@ -755,7 +761,8 @@
                     this.currentStills = this.allStills.filter((item) => {
                         return movie.stillCut.includes(item.id)
                     });
-                }
+                },
+                
             },
             filters: {
                 getYear(value) {

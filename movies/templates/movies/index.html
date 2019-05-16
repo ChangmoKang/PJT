@@ -31,7 +31,7 @@
                         <img :src="movie.posterUrl">
                         <div class="movie_poster_bg"></div>
                         <span class="movie_preview_text movie_title">[[ movie.movieNm ]]</span>
-                        <span class="movie_preview_text movie_year">[[ movie.openDt ]]년</span>
+                        <span class="movie_preview_text movie_year">[[ movie.openDt | getYear ]]년</span>
                         <div class="movie_preview_text movie_score">
                             <div class="star-ratings-css">
                                 <div class="star-ratings-css-top" :style="{'width': `${movie.score*10}%`}">
