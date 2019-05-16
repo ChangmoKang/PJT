@@ -339,21 +339,21 @@
         "pk": 49,
         "model": "movies.stillCut",
         "fields": {
-            "stillCut": "https://movie-phinf.pstatic.net/20181210_148/15444076365644gpAD_JPEG/movie_image.jpg?type=m665_443_2"
+            "stillCut": "https://movie-phinf.pstatic.net/20180509_40/1525832749412sRMS6_JPEG/movie_image.jpg?type=n74_74_2"
         }
     },
     {
         "pk": 50,
         "model": "movies.stillCut",
         "fields": {
-            "stillCut": "https://movie-phinf.pstatic.net/20181212_197/1544580254673IRLeQ_JPEG/movie_image.jpg?type=m665_443_2"
+            "stillCut": "https://movie-phinf.pstatic.net/20180410_236/1523324924752KFeoQ_JPEG/movie_image.jpg?type=n74_74_2"
         }
     },
     {
         "pk": 51,
         "model": "movies.stillCut",
         "fields": {
-            "stillCut": "https://movie-phinf.pstatic.net/20181212_287/1544580255010OuCAv_JPEG/movie_image.jpg?type=m665_443_2"
+            "stillCut": "https://movie-phinf.pstatic.net/20180409_171/15232402072550Cpuq_JPEG/movie_image.jpg?type=n74_74_2"
         }
     },
     {
