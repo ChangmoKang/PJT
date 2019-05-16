@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Genre, Nation, Director, Actor, StillCut, Movie, Score
+from django.contrib.auth import get_user_model
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -44,9 +45,16 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = ['id', 'movieCd', 'movieNm', 'openDt', 'audiAcc', 'movieNmEn', 'showTm', 'posterUrl', 'description', 'score', 'trailer', 'genre',  'nation', 'director', 'actor', 'stillCut', 'selected']
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['username']
+
+
 class ScoreSerializer(serializers.ModelSerializer):
     movie = MovieSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Score
-        fields = ['comment', 'score', 'movie']
+        fields = ['comment', 'score', 'movie', 'user']
