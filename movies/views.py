@@ -7,6 +7,7 @@ from .forms import ScoreModelForm
 
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -27,7 +28,7 @@ def movie_index(request):
         # 'daily_lists': list(Movie.objects.all()),
         'date': int(datetime.today().strftime('%Y%m%d')) - 1,
         # 'date': YESTERDAY,
-        'daily_lists': daily_lists,
+        # 'daily_lists': daily_lists,
     })
     
 
@@ -113,10 +114,6 @@ def movie_suggestions(request):
 
 
 """ REST API
-# from django.contrib.auth import get_user_model
-
-
-
 @api_view(['GET', 'POST'])
 def score_create_read(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
