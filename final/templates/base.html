@@ -778,6 +778,9 @@
                         this.ratingScoreContent = '';
                     })
                 },
+                deleteScoreReview(id) {
+                    axios.delete(`https://final-pjt-dkssudckdah.c9users.io/movies/scores/${id}/`)
+                }
             },
             filters: {
                 getYear(value) {

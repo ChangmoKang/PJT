@@ -57,4 +57,4 @@ class ScoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Score
-        fields = ['comment', 'score', 'movie', 'user']
+        fields = ['id', 'comment', 'score', 'movie', 'user']
