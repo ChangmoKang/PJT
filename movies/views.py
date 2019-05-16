@@ -92,6 +92,7 @@ def score_read_only(request):
     return Response(serializer.data)
 
 
+@login_required
 @api_view(['GET', 'POST'])
 def score_create_read(request,movie_id):
     movie = get_object_or_404(Movie,pk=movie_id)
