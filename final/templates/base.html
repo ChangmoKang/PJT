@@ -703,18 +703,10 @@
                 allMovies: [],
                 currentMovie: '',
                 allGenres: [],
-                currentGenres: [],
-                allNations: [],
-                currentNations: [],
-                allDirectors: [],
-                currentDirectors: [],
-                allActors: [],
-                currentActors: [],
-                allStills: [],
-                currentStills: [],
                 selectedGenres: [],
                 suggNationOpt: 'all',
                 allScores: [],
+                currentScores: [],
             },
             methods: {
                 scoreHoverOver(num) {
@@ -727,75 +719,29 @@
                 genreSelectToggle(genre) {
                     if (genre.selected) {
                         genre.selected = false;
-                        this.selectedGenres = arrRemove(this.selectedGenres, genre.id);
+                        this.selectedGenres = arrRemove(this.selectedGenres, genre.genreNm);
                     }
                     else {
                         genre.selected = true;
-                        this.selectedGenres.push(genre.id);
+                        this.selectedGenres.push(genre.genreNm);
                     }
                 },
-                getKoreaCode() {
-                    let code = 0;
-                    this.allNations.forEach((nation) => {
-                        if (nation.nationNm == "한국") {
-                            code = nation.id;
-                        }
-                    });
-                    return code
-                },
                 getAllMovies() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/')
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/')
                         .then((res) => {
                             this.allMovies = res.data
                         })
                 },
                 getAllGenres() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/genres/')
+                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/genres/')
                         .then((res) => {
                             this.allGenres = res.data
                         })
                 },
-                getAllNations() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/nations/')
-                        .then((res) => {
-                            this.allNations = res.data
-                        })
-                },
-                getAllDirectors() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/directors/')
-                        .then((res) => {
-                            this.allDirectors = res.data
-                        })
-                },
-                getAllStills() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/stillCuts/')
-                        .then((res) => {
-                            this.allStills = res.data
-                        })
-                },
-                getAllActors() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/actors/')
-                        .then((res) => {
-                            this.allActors = res.data
-                        })
-                },
-                setCurrentMovie(movie) {
+                async setCurrentMovie(movie) {
                     this.currentMovie = movie;
-                    this.currentGenres = this.allGenres.filter((item) => {
-                        return movie.genre.includes(item.id)
-                    });
-                    this.currentNations = this.allNations.filter((item) => {
-                        return movie.nation.includes(item.id)
-                    });
-                    this.currentDirectors = this.allDirectors.filter((item) => {
-                        return movie.director.includes(item.id)
-                    });
-                    this.currentActors = this.allActors.filter((item) => {
-                        return movie.actor.includes(item.id)
-                    });
-                    this.currentStills = this.allStills.filter((item) => {
-                        return movie.stillCut.includes(item.id)
-                    });
+                    let res_score = await axios.get(`https://final-pjt-dkssudckdah.c9users.io/movies/${movie.id}/scores/`)
+                    this.currentScores = res_score.data;
                 },
                 getAllScores() {
                     axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/scores/')
@@ -804,28 +750,19 @@
                         });
                 },
                 createScoreReview() {
-                    axios.post('https://final-pjt-dkssudckdah.c9users.io/movies/scores/', {
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+                    axios.post(`https://final-pjt-dkssudckdah.c9users.io/movies/${this.currentMovie.id}/scores/`, {
                         comment: this.ratingScoreContent,
                         score: this.rating_score,
-                        movieCd: this.currentMovie.movieCd,
                     }).then((res) => {
-                        this.allScores.push({
+                        this.currentScores.push({
                             comment: this.ratingScoreContent,
                             score: this.rating_score,
-                            movieCd: this.currentMovie.movieCd,
                         })
                         this.rating_score = 0;
                         this.ratingScoreContent = '';
                     })
-                },
-                getMovieTitleFromCd(movieCd) {
-                    let movieTitle = '';
-                    this.allMovies.forEach((movie) => {
-                        if (movie.movieCd == movieCd) {
-                            movieTitle = movie.movieNm;
-                        }
-                    });
-                    return movieTitle
                 },
             },
             filters: {
@@ -847,12 +784,12 @@
                     }
                     else if (this.suggNationOpt == "kor") {
                         return filteredByGenreMovies.filter((movie) => {
-                            return movie.nation.some(g => g === this.getKoreaCode());
+                            return movie.nation.some(g => g === "한국");
                         });
                     }
                     else {
                         return filteredByGenreMovies.filter((movie) => {
-                            return movie.nation.every(g => g !== this.getKoreaCode());
+                            return movie.nation.every(g => g !== "한국");
                         });
                     }
                 }
@@ -860,10 +797,6 @@
             created: function () {
                 this.getAllMovies();
                 this.getAllGenres();
-                this.getAllNations();
-                this.getAllDirectors();
-                this.getAllActors();
-                this.getAllStills();
                 this.getAllScores();
             }
         });
