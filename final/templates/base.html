@@ -576,7 +576,23 @@
             height: 300px;
             border: 1px solid royalblue;
         }
-        
+        .movieCardCont {
+            position: relative;
+        }
+        .movieCard {
+            border: 1px solid pink;
+            width: 100%;
+            height: 250px;
+            padding-bottom: 20px;
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translate(-50%);
+        }
+        .movieCardPoster {
+            height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+        }
         
         /* * * * * * * * *  FORMS * * * * * * * * */
         
@@ -630,6 +646,13 @@
     
     <script>
         
+        const arrRemove = (arr, val) => {
+            return arr.filter(function(el) {
+                return el != val;
+            });
+        };
+        
+        
         const app = new Vue({
             delimiters: ['[[', ']]'],
             el: '#wrap',
@@ -649,6 +672,8 @@
                 currentActors: [],
                 allStills: [],
                 currentStills: [],
+                selectedGenres: [],
+                suggNationOpt: 'all',
             },
             methods: {
                 scoreHoverOver(num) {
@@ -661,43 +686,54 @@
                 genreSelectToggle(genre) {
                     if (genre.selected) {
                         genre.selected = false;
+                        this.selectedGenres = arrRemove(this.selectedGenres, genre.id);
                     }
                     else {
                         genre.selected = true;
+                        this.selectedGenres.push(genre.id);
                     }
                 },
+                getKoreaCode() {
+                    let code = 0;
+                    this.allNations.forEach((nation) => {
+                        if (nation.nationNm == "한국") {
+                            code = nation.id;
+                        }
+                    });
+                    return code
+                },
                 getAllMovies() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/')
                         .then((res) => {
                             this.allMovies = res.data
                         })
                 },
                 getAllGenres() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/genres/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/genres/')
                         .then((res) => {
                             this.allGenres = res.data
                         })
                 },
                 getAllNations() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/nations/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/nations/')
                         .then((res) => {
                             this.allNations = res.data
                         })
                 },
                 getAllDirectors() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/directors/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/directors/')
                         .then((res) => {
                             this.allDirectors = res.data
                         })
                 },
                 getAllStills() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/stillCuts/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/stillCuts/')
                         .then((res) => {
                             this.allStills = res.data
                         })
                 },
                 getAllActors() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/actors/')
+                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/actors/')
                         .then((res) => {
                             this.allActors = res.data
                         })
@@ -728,6 +764,27 @@
                     }
                     return value.slice(0, 4)
                 },
+            },
+            computed: {
+                suggestedMovies: function() {
+                    let filteredByGenreMovies = this.allMovies.filter((movie) => {
+                        return movie.genre.some(g => this.selectedGenres.includes(g));
+                    });
+                    
+                    if (this.suggNationOpt == 'all') {
+                        return filteredByGenreMovies
+                    }
+                    else if (this.suggNationOpt == "kor") {
+                        return filteredByGenreMovies.filter((movie) => {
+                            return movie.nation.some(g => g === this.getKoreaCode());
+                        });
+                    }
+                    else {
+                        return filteredByGenreMovies.filter((movie) => {
+                            return movie.nation.every(g => g !== this.getKoreaCode());
+                        });
+                    }
+                }
             },
             created: function () {
                 this.getAllMovies();

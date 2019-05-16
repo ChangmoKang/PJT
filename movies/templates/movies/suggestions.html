@@ -8,42 +8,36 @@
             <input type="checkbox" name="cb" id="genreCB">
             <label for="genreCB" class="genreCheckbox">장르 선택</label>
             <div class="genreOptions">
-                <span v-for="genre in genres" class="genreOption" @click="genreSelectToggle(genre)"
-                :class="{selectedGenre: genre.selected}">[[genre.name]]</span>
+                <span v-for="genre in allGenres" class="genreOption" @click="genreSelectToggle(genre)"
+                :class="{selectedGenre: genre.selected}">[[genre.genreNm]]</span>
             </div>
         </div>
         <div class="nationSelectMenu">
             <input type="checkbox" name="cb2" id="nationCB">
             <label for="nationCB" class="nationCheckbox">국가 선택</label>
             <div class="nationOptions">
-                <input type="radio" name="rd" id="rdAll">
+                <input type="radio" name="rd" id="rdAll" v-model="suggNationOpt" value="all">
                 <label for="rdAll" class="nationRadio">전체</label><br>
-                <input type="radio" name="rd" id="rdKor">
+                <input type="radio" name="rd" id="rdKor" v-model="suggNationOpt" value="kor">
                 <label for="rdKor" class="nationRadio">국내</label><br>
-                <input type="radio" name="rd" id="rdInt">
+                <input type="radio" name="rd" id="rdInt" v-model="suggNationOpt" value="int">
                 <label for="rdInt" class="nationRadio">해외</label>
             </div>
         </div>
     </div>
     <div class="suggResults">
-
+        <!-- Bootstrap Grid System-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="movie in suggestedMovies">
+                    <div class="movieCard">
+                        <!--[[ movie.movieNm ]]-->
+                        <img :src="movie.posterUrl" class="movieCardPoster">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    
-    
-    <!--<div class="optionSelectBox">-->
-    <!--    <div class="genreSelectMenu">-->
-    <!--        GENRE-->
-    <!--        <ul class="inner_ul">-->
-    <!--            <li v-for="genre in genres" -->
-    <!--                class="inner_li"-->
-    <!--                @click="genreSelectToggle(genre)"-->
-    <!--                :class="{selectedGenre: genre.selected}">-->
-    <!--                [[genre.name]]-->
-    <!--            </li>-->
-    <!--        </ul>-->
-    <!--    </div>-->
-    <!--</div>-->
     
 </div>
 {% endblock %}
