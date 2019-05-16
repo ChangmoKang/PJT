@@ -860,7 +860,7 @@
                 suggNationOpt: 'all',
                 allScores: [],
                 currentScores: [],
-                userWatchStr: '',
+                // userWatchStr: '',
                 currentMovieInWatch: false,
             },
             methods: {
@@ -898,16 +898,17 @@
                     let res_score = await axios.get(`https://final-pjt-dkssudckdah.c9users.io/movies/${movie.id}/scores/`)
                     this.currentScores = res_score.data;
                     
-                    if (JSON.parse(this.userWatchStr).includes(movie.id)) {
-                        this.currentMovieInWatch = true;
+                    if (movie.watchUsers.includes("{{user}}")) {
+                        this.currentMovieInWatch = true
                     }
+
                 },
-                getUserWatchlist() {
-                    axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/{{user.id}}/watches/')
-                        .then((res) => {
-                            this.userWatchStr = res.data;
-                        });
-                },
+                // getUserWatchlist() {
+                //     axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/get/{{user.id}}/watches/')
+                //         .then((res) => {
+                //             this.userWatchStr = res.data;
+                //         });
+                // },
                 getAllScores() {
                     axios.get('https://final-pjt-dkssudckdah.c9users.io/movies/scores/')
                         .then((res) => {
@@ -935,19 +936,19 @@
                             this.currentScores = arrRemoveByID(this.currentScores, id)
                         });
                 },
-                async addToWatch(movieID) {
-                    this.userWatchStr = JSON.stringify(JSON.parse(this.userWatchStr).push(movieID));
-                    // axios update request
+                // async addToWatch(movieID) {
+                //     this.userWatchStr = JSON.stringify(JSON.parse(this.userWatchStr).push(movieID));
+                //     // axios update request
                     
-                    this.currentMovieInWatch = true;
-                },
-                async removeFromWatch(movieID) {
-                    let tmpArr = JSON.parse(this.userWatchStr);
-                    this.userWatchStr = JSON.stringify(arrRemove(tmpArr, movieID));
-                    // axios update request
+                //     this.currentMovieInWatch = true;
+                // },
+                // async removeFromWatch(movieID) {
+                //     let tmpArr = JSON.parse(this.userWatchStr);
+                //     this.userWatchStr = JSON.stringify(arrRemove(tmpArr, movieID));
+                //     // axios update request
                     
-                    this.currentMovieInWatch = false;
-                }
+                //     this.currentMovieInWatch = false;
+                // }
             },
             filters: {
                 getYear(value) {
@@ -982,7 +983,7 @@
                 this.getAllMovies();
                 this.getAllGenres();
                 this.getAllScores();
-                this.getUserWatchlist();
+                // this.getUserWatchlist();
             }
         });
         
