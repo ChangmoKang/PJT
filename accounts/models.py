@@ -11,6 +11,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
+    watch = models.CharField(default='', max_length=300)
     
     def __str__(self):
         return self.username
