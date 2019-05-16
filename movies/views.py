@@ -27,6 +27,7 @@ def movie_index(request):
     return render(request, 'movies/index.html', {
         # 'daily_lists': list(Movie.objects.all()),
         'date': int(datetime.today().strftime('%Y%m%d')) - 1,
+        'userID': request.user.id,
         # 'date': YESTERDAY,
         # 'daily_lists': daily_lists,
     })
