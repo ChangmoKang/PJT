@@ -34,6 +34,7 @@ class Movie(models.Model):
     description = models.TextField(default='')
     score = models.FloatField(default=0)
     trailer = models.CharField(default='', max_length=150)
+    watchGradeNm = models.CharField(default='', max_length=150)
     genre = models.ManyToManyField(Genre, related_name='movies')
     nation = models.ManyToManyField(Nation, related_name='movies')
     director = models.ManyToManyField(Director, related_name='movies')

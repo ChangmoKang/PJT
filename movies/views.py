@@ -12,9 +12,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializer, ScoreSerializer, GenreSerializer, NationSerializer, DirectorSerializer, ActorSerializer, StillCutSerializer
 
-from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
+# from .API_CALL.KOFIC.get_daily_list import daily_lists, YESTERDAY
+# from .API_CALL.KOFIC.get_data import a
+# from .API_CALL.KOFIC.organize import a
 # from .API_CALL.KOFIC.get_json import a
-
 
 # Create your views here.
 def intro(request):

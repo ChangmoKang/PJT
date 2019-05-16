@@ -3,53 +3,32 @@
         "pk": 1,
         "model": "movies.nation",
         "fields": {
-            "nationNm": "덴마크"
+            "nationNm": "미국"
         }
     },
     {
         "pk": 2,
         "model": "movies.nation",
         "fields": {
-            "nationNm": "일본"
+            "nationNm": "한국"
         }
     },
     {
         "pk": 3,
         "model": "movies.nation",
         "fields": {
-            "nationNm": "이탈리아"
+            "nationNm": "호주"
         }
     },
     {
         "pk": 4,
         "model": "movies.nation",
         "fields": {
-            "nationNm": "프랑스"
+            "nationNm": "일본"
         }
     },
     {
         "pk": 5,
-        "model": "movies.nation",
-        "fields": {
-            "nationNm": "한국"
-        }
-    },
-    {
-        "pk": 6,
-        "model": "movies.nation",
-        "fields": {
-            "nationNm": "미국"
-        }
-    },
-    {
-        "pk": 7,
-        "model": "movies.nation",
-        "fields": {
-            "nationNm": "인도"
-        }
-    },
-    {
-        "pk": 8,
         "model": "movies.nation",
         "fields": {
             "nationNm": "영국"

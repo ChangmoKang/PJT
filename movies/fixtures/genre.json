@@ -3,98 +3,98 @@
         "pk": 1,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "미스터리"
+            "genreNm": "액션"
         }
     },
     {
         "pk": 2,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "어드벤처"
+            "genreNm": "SF"
         }
     },
     {
         "pk": 3,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "뮤지컬"
+            "genreNm": "코미디"
         }
     },
     {
         "pk": 4,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "판타지"
+            "genreNm": "드라마"
         }
     },
     {
         "pk": 5,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "공포(호러)"
+            "genreNm": "어드벤처"
         }
     },
     {
         "pk": 6,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "코미디"
+            "genreNm": "스릴러"
         }
     },
     {
         "pk": 7,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "사극"
+            "genreNm": "애니메이션"
         }
     },
     {
         "pk": 8,
         "model": "movies.genre",
         "fields": {
-            "genreNm": " 스릴러"
+            "genreNm": "가족"
         }
     },
     {
         "pk": 9,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "멜로/로맨스"
+            "genreNm": "미스터리"
         }
     },
     {
         "pk": 10,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "드라마"
+            "genreNm": "공포(호러)"
         }
     },
     {
         "pk": 11,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "액션"
+            "genreNm": "판타지"
         }
     },
     {
         "pk": 12,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "애니메이션"
+            "genreNm": "범죄"
         }
     },
     {
         "pk": 13,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "범죄"
+            "genreNm": "사극"
         }
     },
     {
         "pk": 14,
         "model": "movies.genre",
         "fields": {
-            "genreNm": "SF"
+            "genreNm": "멜로/로맨스"
         }
     }
 ]

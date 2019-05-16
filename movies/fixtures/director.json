@@ -3,371 +3,364 @@
         "pk": 1,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "민규동"
+            "peopleNm": "안소니 루소"
         }
     },
     {
         "pk": 2,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "김태균"
+            "peopleNm": "조 루소"
         }
     },
     {
         "pk": 3,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이석근"
+            "peopleNm": "정다원"
         }
     },
     {
         "pk": 4,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이병헌"
+            "peopleNm": "육상효"
         }
     },
     {
         "pk": 5,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "장재현"
+            "peopleNm": "롭 레터맨"
         }
     },
     {
         "pk": 6,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "알렉산더 페인"
+            "peopleNm": "앤소니 마라스"
         }
     },
     {
         "pk": 7,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "필립 립스키"
+            "peopleNm": "홍승완"
         }
     },
     {
         "pk": 8,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "발레리 페리스"
+            "peopleNm": "김현호"
         }
     },
     {
         "pk": 9,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "스도 토모노리"
+            "peopleNm": "윤창섭"
         }
     },
     {
         "pk": 10,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이한"
+            "peopleNm": "피터 헤지스"
         }
     },
     {
         "pk": 11,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "리 언크리치"
+            "peopleNm": "미이케 다카시"
         }
     },
     {
         "pk": 12,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "장준환"
+            "peopleNm": "미 키 코이치로"
         }
     },
     {
         "pk": 13,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "조 루소"
+            "peopleNm": "애너 보든"
         }
     },
     {
         "pk": 14,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이종석"
+            "peopleNm": "라이언 플 렉"
         }
     },
     {
         "pk": 15,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "김대웅"
+            "peopleNm": "애덤 로비텔"
         }
     },
     {
         "pk": 16,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "요르고스 란티모스"
+            "peopleNm": "조민호"
         }
     },
     {
         "pk": 17,
         "model": "movies.director",
         "fields": {
-            "peopleNm": " 이준익"
+            "peopleNm": "이병헌"
         }
     },
     {
         "pk": 18,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "쉐인 블랙"
+            "peopleNm": "이한"
         }
     },
     {
         "pk": 19,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "니테쉬 티와리"
+            "peopleNm": "장재 현"
         }
     },
     {
         "pk": 20,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "라이언 플렉"
+            "peopleNm": "피터 패럴리"
         }
     },
     {
         "pk": 21,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "로슨 마샬 터버"
+            "peopleNm": "요르고스 란티모스"
         }
     },
     {
         "pk": 22,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "닉 파크"
+            "peopleNm": "스도 토모노리"
         }
     },
     {
         "pk": 23,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "양우석"
+            "peopleNm": "이정범"
         }
     },
     {
         "pk": 24,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "제이크 캐스단"
+            "peopleNm": "엄유나"
         }
     },
     {
         "pk": 25,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "스콧 스피어"
+            "peopleNm": "강효진"
         }
     },
     {
         "pk": 26,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "리 워넬"
+            "peopleNm": "리 치 무어"
         }
     },
     {
         "pk": 27,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "최상훈"
+            "peopleNm": "최신규"
         }
     },
     {
         "pk": 28,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "조나단 데이턴"
+            "peopleNm": "유재운"
         }
     },
     {
         "pk": 29,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "신보 아키유키"
+            "peopleNm": "제임 스 완"
         }
     },
     {
         "pk": 30,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이시하라 타츠야"
+            "peopleNm": "브라이언 싱어"
         }
     },
     {
         "pk": 31,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "허종호"
+            "peopleNm": "트래비스 나이트"
         }
     },
     {
         "pk": 32,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "세르지오 맨피오"
+            "peopleNm": "김병우"
         }
     },
     {
         "pk": 33,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이정범"
+            "peopleNm": " 한상호"
         }
     },
     {
         "pk": 34,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "세드릭 클래피쉬"
+            "peopleNm": "허종호"
         }
     },
     {
         "pk": 35,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "페이튼 리드"
+            "peopleNm": "아니쉬 차간티"
         }
     },
     {
         "pk": 36,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "애덤 로비텔"
+            "peopleNm": "쉐인 블랙"
         }
     },
     {
         "pk": 37,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "피터 패럴리"
+            "peopleNm": "이석근"
         }
     },
     {
         "pk": 38,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "마이클 그레이시"
+            "peopleNm": "김광식"
         }
     },
     {
         "pk": 39,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "타케우치 히데키"
+            "peopleNm": "리 워넬"
         }
     },
     {
         "pk": 40,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "조민호"
+            "peopleNm": "이종석"
         }
     },
     {
         "pk": 41,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "박훈정"
+            "peopleNm": "김태균"
         }
     },
     {
         "pk": 42,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "스티븐 크보스키"
+            "peopleNm": "변혁"
         }
     },
     {
         "pk": 43,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "김용완"
+            "peopleNm": "코린 하디"
         }
     },
     {
         "pk": 44,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "아니쉬 차간티"
+            "peopleNm": "페 이튼 리드"
         }
     },
     {
         "pk": 45,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "코린 하디"
+            "peopleNm": "로슨 마샬 터버"
         }
     },
     {
         "pk": 46,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "김용화"
+            "peopleNm": "박훈정"
         }
     },
     {
         "pk": 47,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "이언희"
+            "peopleNm": "최상훈"
         }
     },
     {
         "pk": 48,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "요르겐 레르담"
+            "peopleNm": "이준익"
         }
     },
     {
         "pk": 49,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "김광식"
+            "peopleNm": "이언희"
         }
     },
     {
         "pk": 50,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "카를로스 살다나"
+            "peopleNm": "스콧 스피어"
         }
     },
     {
         "pk": 51,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "변혁"
+            "peopleNm": "민규동"
         }
     },
     {
         "pk": 52,
         "model": "movies.director",
         "fields": {
-            "peopleNm": "애너 보든"
-        }
-    },
-    {
-        "pk": 53,
-        "model": "movies.director",
-        "fields": {
-            "peopleNm": "안소니 루소"
+            "peopleNm": "타 케우치 히데키"
         }
     }
 ]
