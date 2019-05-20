@@ -2,12 +2,13 @@
 {% load mathfilters %}
     
 {% block body %}    
+
+<!----------------------------------- MAIN PAGE ---------------------------------------->
     <div class="main_section" v-if="showMode === 'main'">
         <section class="box_office">
             <h3 class="section_header">일일 박스오피스 {{ date }} 기준</h3>
             <div class="movie_strip swiper-container">
                 <div class="swiper-wrapper">
-
                     <div v-for="movie in allMovies.slice(0, 10)" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="setCurrentMovie(movie)">
                         <img :src="movie.posterUrl">
                         <div class="movie_poster_bg"></div>
@@ -22,13 +23,12 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
+        
         <section class="recommendation">
-            <h3 class="section_header">영화 추천<button class="btn btn-crimson advanced_rec" @click="showMode = 'sugg'">추천 더보기</button></h3>
-            
+            <h3 class="section_header">영화 추천<button class="btn btn-prussian advanced_rec" @click="showMode = 'sugg'">추천 더보기</button></h3>
             <div class="movie_strip swiper-container2">
                 <div class="swiper-wrapper">
                     <div v-for="movie in allMovies.slice(10, )" class="movie_preview swiper-slide" data-toggle="modal" data-target="#exampleModalCenter" @click="setCurrentMovie(movie)">
@@ -47,11 +47,10 @@
                     </div>
                 </div>
             </div>
-            
         </section>
+        
         <section class="recent_scores">
             <h3 class="section_header">최신 평점</h3>
-            
             <!-- Bootstrap Grid System-->
             <div class="container">
                 <div class="row">
@@ -80,9 +79,8 @@
         </section>
     </div>
 
-<!---------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------->
 
+<!------------------------------ SUGGESTIONS/WATCHLIST PAGE ----------------------------------->
     <div id="suggMainContainer" v-else>
         <h3 class="section_header" v-if="showMode === 'sugg'">영화 상세 추천</h3>
         <h3 class="section_header" v-if="showMode === 'watch'">찜한 영화 목록</h3>

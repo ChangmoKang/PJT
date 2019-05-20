@@ -16,11 +16,13 @@ class Nation(models.Model):
     def __str__(self):
         return self.nationNm
 
+
 class Director(models.Model):
     peopleNm = models.CharField(default='', max_length=150)
 
     def __str__(self):
         return self.peopleNm
+
 
 class Actor(models.Model):
     peopleNm = models.CharField(default='', max_length=150)
@@ -28,11 +30,13 @@ class Actor(models.Model):
     def __str__(self):
         return self.peopleNm
 
+
 class StillCut(models.Model):
     stillCut = models.CharField(default='', max_length=150)
 
     def __str__(self):
         return self.stillCut
+
 
 class Movie(models.Model):
     movieCd = models.IntegerField(default=0)
