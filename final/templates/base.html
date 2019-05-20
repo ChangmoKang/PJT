@@ -786,6 +786,8 @@
         
         
     //////////// VUE INSTANCE /////////////
+        let API_URL = "https://final-prj-whitejcme.c9users.io/movies/";
+        
         const app = new Vue({
             delimiters: ['[[', ']]'],
             el: '#wrap',
@@ -826,7 +828,7 @@
                     }
                 },
                 async getAllMovies() {
-                    const tmp = await axios.get('https://final-prj-whitejcme.c9users.io/movies/get/')
+                    const tmp = await axios.get(`${API_URL}get/`);
                     this.allMovies = tmp.data;
                     this.userWatchlist = this.allMovies.filter((movie) => {
                         return movie.watchUsers.some((user) => {
@@ -835,21 +837,21 @@
                     });
                 },
                 getAllGenres() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/get/genres/')
+                    axios.get(`${API_URL}get/genres/`)
                         .then((res) => {
                             this.allGenres = res.data;
                         });
                 },
                 async setCurrentMovie(movie) {
                     this.currentMovie = movie;
-                    let res_score = await axios.get(`https://final-prj-whitejcme.c9users.io/movies/${movie.id}/scores/`);
+                    let res_score = await axios.get(`${API_URL}${movie.id}/scores/`);
                     this.currentScores = res_score.data;
                     if (movie.watchUsers.includes("{{user}}")) {
                         this.currentMovieInWatch = true;
                     }
                 },
                 getAllScores() {
-                    axios.get('https://final-prj-whitejcme.c9users.io/movies/scores/')
+                    axios.get(`${API_URL}scores/`)
                         .then((res) => {
                             this.allScores = res.data
                         });
@@ -857,7 +859,7 @@
                 createScoreReview() {
                     axios.defaults.xsrfCookieName = 'csrftoken';
                     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-                    axios.post(`https://final-prj-whitejcme.c9users.io/movies/${this.currentMovie.id}/scores/`, {
+                    axios.post(`${API_URL}${this.currentMovie.id}/scores/`, {
                         comment: this.ratingScoreContent,
                         score: this.rating_score,
                     }).then((res) => {
@@ -876,9 +878,9 @@
                     });
                 },
                 deleteScoreReview(id) {
-                    axios.defaults.xsrfCookieName = 'csrftoken'
-                    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-                    axios.delete(`https://final-prj-whitejcme.c9users.io/movies/scores/${id}/`)
+                    axios.defaults.xsrfCookieName = 'csrftoken';
+                    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+                    axios.delete(`${API_URL}scores/${id}/`)
                         .then((res) => {
                             this.currentScores = arrRemoveByID(this.currentScores, id);
                         });
@@ -892,14 +894,12 @@
                     }
                 },
                 async addToWatch(movieID) {
-                    axios.get(`https://final-prj-whitejcme.c9users.io/movies/get/${movieID}/watches/`);
-                    // this.currentMovieInWatch = true;
+                    axios.get(`${API_URL}get/${movieID}/watches/`);
                     this.userWatchlist.push(this.currentMovie);
                     this.currentMovieInWatchlist();
                 },
                 async removeFromWatch(movieID) {
-                    axios.get(`https://final-prj-whitejcme.c9users.io/movies/get/${movieID}/watches/`);
-                    // this.currentMovieInWatch = false;
+                    axios.get(`${API_URL}get/${movieID}/watches/`);
                     this.userWatchlist = arrRemoveByID(this.userWatchlist, movieID);
                     this.currentMovieInWatchlist();
                 },
