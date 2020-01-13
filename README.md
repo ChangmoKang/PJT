@@ -1,15 +1,7 @@
-# pip_install_list
-django==2.1.8
-django_extensions
-djangorestframework
-requests
-bs4
-django-bootstrap4 // https://django-bootstrap4.readthedocs.io/en/stable/quickstart.html
-django-rest-swagger
+# Python
 
-
-
-
-.
-
+## Web (disabled)
 https://obscure-reef-18137.herokuapp.com/
+
+## API Server
+https://guarded-beyond-66661.herokuapp.com/
